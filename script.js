@@ -2790,7 +2790,96 @@ const maximumUnits = (boxTypes, truckSize)=>{
     }
     return totalUnits;
 }
-//console.log(maximumUnits([[5,10],[2,5],[4,7],[3,9]], 10))
+//console.log(maximumUnits([[5,10],[2,5],[4,7],[3,9]], 10));
+
+
+// to find the pivot index where the number sum is equal and splits between two indices
+// but note it ignores the selected index
+const pivotIndex = (nums)=>{
+    if(nums.length < 1 || nums.length > 10000){
+        return;
+    }
+    console.log(nums);
+    let pivotIndex = 0;
+    // brute force way
+    for(let i = 0; i < nums.length; i++){
+        let sum1 = 0;
+        let sum2 = 0;
+        // getting the two arrays from both sides of the indices
+        let arrayRight = nums.slice(i + 1, nums.length);
+        let arrayLeft = nums.slice(0, i);
+        console.log('left', arrayLeft, 'right', arrayRight);
+
+
+         sum1 = arrayRight.length === 0 ? 0 :arrayRight.reduce((acc, total)=> total + acc);
+         sum2 = arrayLeft.length === 0 ? 0 : arrayLeft.reduce((acc, total)=> total + acc);
+
+        console.log('right',sum1, 'left', sum2);
+
+        if(sum1 === sum2){
+            pivotIndex = i;
+            break;
+        }else{
+            pivotIndex = -1;
+        }
+
+    }
+
+
+    return pivotIndex;
+
+}
+//console.log(pivotIndex([1,2,3]));
+
+
+const pivoteIndexOn = (nums)=>{
+    let rightSum = 0; 
+    let leftSum = 0;
+    let pivot = 0;
+    for(let i = 0; i < nums.length; i++){
+        rightSum += nums[i];
+    }
+    for(let i = 0; i < nums.length; i++){
+        rightSum -= nums[i];
+
+        if(leftSum === rightSum){
+            return i;
+        }
+        leftSum += nums[i];
+    }
+    return -1;
+}
+
+//console.log(pivoteIndexOn([1,2,3]));
+
+// checking whether the number is palindrome or not without converting it to a string
+const palindromeNumber = (x)=>{
+    console.log(x);
+    if(x === 0){
+        return 0;
+    }
+    
+    let temp = x;
+    let final = 0;
+
+    while(x > 0){
+        let rem = x % 10;
+        x = parseInt(x /10);
+        final = final * 10 + rem;
+
+        if(final === temp){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+console.log(palindromeNumber(123));
+
+
+
+
 
 
 
