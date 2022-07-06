@@ -2875,7 +2875,59 @@ const palindromeNumber = (x)=>{
     return false;
 }
 
-console.log(palindromeNumber(123));
+//console.log(palindromeNumber(123));
+
+
+// long pressed name to check whether there is any repeated letters or not
+const isLongPressedName = (name, typed)=>{
+    // making letter groups for comparison
+    const makeGroups = (word) =>{
+        let str = '';
+        let array = [];
+        for(let i = 0; i < word.length; i++){
+            str += word[i];
+            if(word[i] !== word[i + 1]){
+                array.push([str, str.length]);
+                str = '';
+            }
+        }
+        return array
+    }
+
+    let nameGrouped = makeGroups(name);
+    let typedGrouped = makeGroups(typed);
+
+    const nameArray = name.split('');
+    const typeArray = typed.split('');
+
+    for(let i = 0; i < nameArray.length; i++){
+        if(!typeArray.includes(nameArray[i])){
+            return false;
+        }
+    }
+    // edge case
+    if(nameGrouped.length !== typedGrouped.length) return false;
+    const len = nameGrouped.length;
+    // checking whether the typed letter missed the original letter or not
+    for(let i = 0; i < len; i++){
+        let nameSet = new Set(nameGrouped[i][0]);
+        let typeSet = new Set(typedGrouped[i][0]);
+
+        const nameFirst = [...nameSet][0];
+        const typeFirst = [...typeSet][0];
+
+        if(nameFirst !== typeFirst) return false;
+        
+        if(nameGrouped[i][1] > typedGrouped[i][1]){
+            return false;
+        }
+    }
+    return true;
+}
+
+
+
+//console.log(isLongPressedName('saeed', 'ssaaedd'));
 
 
 
