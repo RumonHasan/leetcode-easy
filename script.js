@@ -2930,6 +2930,29 @@ const isLongPressedName = (name, typed)=>{
 //console.log(isLongPressedName('saeed', 'ssaaedd'));
 
 
+// returning all the substrings that are present in all the strings of the word
+const stringMatching = (words)=>{
+    let finalArray = []; 
+    const checkSubstring = (word, array)=>{
+        let substring = '';
+        for(let i = 0; i < array.length; i++){
+            if(array[i].indexOf(word) !== -1){
+                substring = word;
+            }
+        }
+        return substring;
+    }
+    for(let i = 0; i < words.length; i++){
+        let array = [];
+        let word = words[i];
+        array = words.filter((singleWord)=> singleWord !== word);
+        finalArray.push(checkSubstring(word, array));
+    }
+    return finalArray.filter((element)=> element !== '');
+}
+//console.log(stringMatching(["mass","as","hero","superhero"]))
+
+
 
 
 
