@@ -2950,7 +2950,43 @@ const stringMatching = (words)=>{
     }
     return finalArray.filter((element)=> element !== '');
 }
-//console.log(stringMatching(["mass","as","hero","superhero"]))
+//console.log(stringMatching(["mass","as","hero","superhero"]));
+
+
+
+// Minimum subsequence in non-decreasing order
+const minSubsequence = (nums)=>{
+    nums.sort((a, b)=> b - a);
+    // edge case for single length
+    if(nums.length === 1){
+        return nums;
+    }
+    // edge case for two same element
+    if(nums[0] === nums[1] && nums.length === 2){
+        return nums;
+    }
+    const getSum = (arr)=>{
+        return arr.reduce((acc, total)=> acc + total);
+    }
+    let index = 1;
+    const stack = [];
+    stack.push(nums[0]);
+    while(index < nums.length){
+        let array = nums.slice(index, nums.length);
+        if(getSum(stack) > getSum(array)){
+            return stack;
+        }else{
+            stack.push(nums[index]);
+        }
+        index++;
+    }
+};
+
+//console.log(minSubsequence([8, 8]))
+
+
+
+
 
 
 
