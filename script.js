@@ -2982,7 +2982,53 @@ const minSubsequence = (nums)=>{
     }
 };
 
-//console.log(minSubsequence([8, 8]))
+//console.log(minSubsequence([8, 8]));
+
+
+
+// returning the last remaining stone
+const lastStoneWeight = (stones)=>{
+    let sortedStones = [...stones];
+    // sorting on every turn
+    const resort = (array)=>{
+        return array.sort((a, b)=> a - b);
+    }
+    for(let i = 0; i < sortedStones.length ; i++){
+        resort(sortedStones);
+        let max = sortedStones[sortedStones.length - 1];
+        let second = sortedStones[sortedStones.length - 2];
+        let value = Math.abs(max - second);
+
+        // edge case
+      if(sortedStones.every((element)=>element === sortedStones[0]) && sortedStones.length % 2 === 1){
+            return [sortedStones[0]];
+        }else if(sortedStones.every((element)=>element === sortedStones[0]) && sortedStones.length % 2 === 0){
+            return [0];
+        }
+        if(value === 0){
+            sortedStones.splice(sortedStones.length - 1);
+            sortedStones.splice(sortedStones.length - 1);         
+            i = 0;
+        }
+
+        if(sortedStones[i] === max){
+            sortedStones[i - 1] = value;
+            sortedStones.splice(i, 1);
+            i = 0;
+        }
+            if(sortedStones.length === 2){
+            return [Math.abs(sortedStones[0] - sortedStones[1])];
+        }
+    }   
+    
+    return sortedStones.filter((element)=> !isNaN(element));
+}
+
+//console.log(lastStoneWeight(
+
+   // [2,4,1,4,1,7,3,8]))
+
+
 
 
 
