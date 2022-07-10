@@ -3097,7 +3097,29 @@ const numberOfAvailableCaptures = (array) =>{
 
 }
 
-//console.log(numberOfAvailableCaptures([[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".","R",".",".",".","p"],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."]]))
+//console.log(numberOfAvailableCaptures([[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".","R",".",".",".","p"],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."]]));
+
+
+// equality in top left to bottom right diagonals
+const isToeplitzMatrix = (matrix)=>{
+    console.log(matrix);
+    for(let i = 0; i < matrix.length; i++){
+        let row = matrix[i];
+        for(let j = 0; j < row.length; j++){
+            // edge case 1
+            if(i === 0 || j === 0){
+                continue;
+            }
+            if(matrix[i][j] !== matrix[i - 1][j - 1]){
+               return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+//console.log(isToeplitzMatrix([[1,2,3,4],[5,1,2,3],[9,5,1,2]]))
 
 
 
