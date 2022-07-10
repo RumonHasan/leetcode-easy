@@ -3029,6 +3029,77 @@ const lastStoneWeight = (stones)=>{
    // [2,4,1,4,1,7,3,8]))
 
 
+// number of available captures of the roo
+
+    // check for captures
+const numberOfAvailableCaptures = (array) =>{
+        const rook = 'R';
+        const bishop = 'B';
+        const pawn = 'p';
+        const emptySquare = '.';
+        // extractions
+        let boardRowArray;
+        let boardColArray;
+    
+        // captures
+        let captureCounter = 0;
+    
+        // check for captures
+        const calculateCaptures = (array) =>{
+            let rookIndex = array.indexOf(rook);
+            let firstPart = array.slice(0, rookIndex);
+            let secondPart = array.slice(rookIndex + 1, array.length);
+    
+             for(let i = firstPart.length - 1; i >= 0 ; i--){
+                if(firstPart[i] === emptySquare){
+                    continue;
+                }
+                if(firstPart[i] === bishop){
+                    break;
+                }
+                if(firstPart[i] === pawn){
+                    captureCounter++;
+                    break;
+                }
+            }
+            // secondPart
+            for(let i = 0; i < secondPart.length; i++){
+                if(secondPart[i] === emptySquare){
+                    continue;
+                }
+                if(secondPart[i] === bishop){
+                    break
+                }
+                if(secondPart[i] === pawn){
+                    captureCounter++;
+                    break;
+                }
+            }
+        }
+    
+        // locate the rook
+        for(let i = 0; i < board.length; i++){
+            let boardRow = board[i];
+            for(let j = 0; j < boardRow.length; j++){
+                if(board[i][j] === rook){
+                    // extract the row and column
+                    boardRowArray = boardRow;
+                    boardColArray = board.map((data)=> data[j]);
+                }
+            }
+        }
+        // getting the captures
+        calculateCaptures(boardRowArray);
+        calculateCaptures(boardColArray);
+    
+        return captureCounter;
+
+
+}
+
+//console.log(numberOfAvailableCaptures([[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".","R",".",".",".","p"],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."]]))
+
+
 
 
 
