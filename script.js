@@ -3122,6 +3122,33 @@ const isToeplitzMatrix = (matrix)=>{
 //console.log(isToeplitzMatrix([[1,2,3,4],[5,1,2,3],[9,5,1,2]]))
 
 
+// finding the max subsequence with the highest sum
+const maxSubsequence = (nums, k)=>{
+    let array = nums.slice().sort((a, b)=> b - a);
+    let hash = {};
+    let final = [];
+    for(let i = 0; i < k; i++){
+        if(hash[array[i]]){
+            hash[array[i]]++
+        }else{
+            hash[array[i]] = 1;
+        }
+    }
+    // checking with the main nums along with the hash tag
+    for(const num of nums){
+        if(hash[num]){
+            final.push(num);
+            hash[num]--;
+        }
+    }
+    return final;
+}
+
+// console.log(maxSubsequence(
+//     [18,3,19,-8,30,22,-35,11,16,18,-21,32,-7,-6,38,25,-21,-1,26,-8,-37,-39,-34,6,-36,-3,26,-32,22,-20,35,-35,-30,-8,11,7,-23,-9,-22,1,33,-6,12,2,27,-27,28,-12,21,12,16,21,33]
+//     ,50))
+
+
 
 
 
