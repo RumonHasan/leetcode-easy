@@ -3145,8 +3145,43 @@ const maxSubsequence = (nums, k)=>{
 }
 
 // console.log(maxSubsequence(
-//     [18,3,19,-8,30,22,-35,11,16,18,-21,32,-7,-6,38,25,-21,-1,26,-8,-37,-39,-34,6,-36,-3,26,-32,22,-20,35,-35,-30,-8,11,7,-23,-9,-22,1,33,-6,12,2,27,-27,28,-12,21,12,16,21,33]
-//     ,50))
+    
+
+
+// capitalise the title
+const capitaliseTitle = (title) =>{
+    const array = title.split(' ');
+    let finalString = '';
+    for(let i = 0; i < array.length; i++){
+        // for words with 2 letters or three
+        if(array[i].length < 3){
+            let smallWord = array[i].toLowerCase();
+            array.splice(i, 1, smallWord);
+        }
+        // for the remaining word length
+        if(array[i].length >= 3 ){
+            let firstLetter = array[i][0].toUpperCase();
+            let arrayWord = array[i].split('');
+            let word = arrayWord.map((letter, index)=> {
+                if(index !== 0){
+                    return letter.toLowerCase();
+                }
+            })
+            word.unshift(firstLetter);
+            array.splice(i, 1 , word.join(''));
+        }
+    }
+    for(let i = 0; i < array.length; i++){
+        if(i === array.length - 1){
+            finalString += array[i];
+        }else{
+            finalString += array[i] + ' '
+        }
+    }
+    return finalString;
+}
+
+console.log(capitaliseTitle("i lOve leetcode"))
 
 
 
