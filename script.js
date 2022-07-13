@@ -3145,8 +3145,6 @@ const maxSubsequence = (nums, k)=>{
 }
 
 // console.log(maxSubsequence(
-    
-
 
 // capitalise the title
 const capitaliseTitle = (title) =>{
@@ -3181,7 +3179,100 @@ const capitaliseTitle = (title) =>{
     return finalString;
 }
 
-console.log(capitaliseTitle("i lOve leetcode"))
+//console.log(capitaliseTitle("i lOve leetcode"))
+
+
+const reverseYoi = (array)=>{
+    console.log(array);
+    const len = array.length;
+    
+    const forApproach = ()=>{
+        for(let i = 0; i < len / 2; i++){
+            console.log(i);
+            let tempVariable = array[i]; // t is being stored
+            array[i] = array[len - 1 - i]; // t becomes m
+            array[len - 1 - i] = tempVariable
+        }
+    }
+    const whileApproach = ()=>{
+        let index = 0;
+        while(index < len / 2){
+            let temp = array[index];
+            array[index] = array[len - 1 - index];
+            array[len - 1 - index] = temp;
+            index++;
+        }
+    }
+    // while
+    return array;
+}
+
+//console.log(reverseYoi(['t','h','o','k','c','h','o','m']));
+
+
+const basicNumberPattern = (size)=>{
+    let finalString = '';
+    for(let i = 1; i <= size; i++){
+        for(let j = 1; j <= i; j++){
+            finalString += i;
+        }
+        finalString += '\n';
+    }
+    return finalString
+}
+//console.log(basicNumberPattern(5));
+
+
+// maximum possible sum of an ascending subarray
+const maxAscendingSum = (nums)=>{
+    console.log(nums);
+    let maxSum = -Infinity;
+    let finalStack = [];
+    let tempStack = [];
+    if(nums.length === 1){
+        return nums;
+    }
+    // checking for max range
+    for(let index = 1; index < nums.length; index++){
+        if(nums[index] === nums[index - 1]){
+            finalStack.push(tempStack);
+            tempStack = [];
+        }
+        if(nums[index] > nums[index - 1] && index === 1){
+            tempStack.push(nums[index - 1]);
+        }
+        if(nums[index] < nums[index - 1]){
+            finalStack.push(tempStack);
+            tempStack = [];
+        }
+        if(nums[index] < nums[index - 1] && index === 1){
+            tempStack.push(nums[index - 1]);
+            finalStack.push(tempStack);
+            tempStack = [];
+        }
+        if(index === nums.length - 1){
+            tempStack.push(nums[nums.length - 1]);
+            finalStack.push(tempStack);
+            tempStack = []
+        }
+        tempStack.push(nums[index]);
+    }
+    for(let i = 0; i < finalStack.length; i++){
+        if(finalStack[i].length === 0){
+            continue;
+        }
+        maxSum = Math.max(finalStack[i].reduce((acc, total)=> acc + total), maxSum)
+    }
+    return maxSum;
+}
+
+//console.log(maxAscendingSum(
+   
+
+   // [100,10,1]))
+
+
+
 
 
 
