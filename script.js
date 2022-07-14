@@ -3285,7 +3285,26 @@ const maxAscendingSumAlternate = (nums)=>{
     return Math.max(...sumArray);
 }
 
-//console.log(maxAscendingSumAlternate([12,17,15,13,10,11,12]))
+//console.log(maxAscendingSumAlternate([12,17,15,13,10,11,12]));
+
+// getting the max product of the elements after deducting one from each of the elements
+const maxProduct = (nums)=>{
+    let prod = -Infinity;
+    // subsequence not subarray
+    for(let i = 0; i < nums.length; i++){
+        for(let j = i + 1; j < nums.length; j++){
+            let first = nums[i] - 1;
+            let second = nums[j] - 1;
+            prod = Math.max(first * second, prod);
+        }
+    }
+    return prod;
+}
+
+//console.log(maxProduct([1,5,4,5]));
+
+
+
 
 
 
