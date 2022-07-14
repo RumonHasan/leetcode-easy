@@ -3267,9 +3267,25 @@ const maxAscendingSum = (nums)=>{
 }
 
 //console.log(maxAscendingSum(
-   
 
    // [100,10,1]))
+
+
+const maxAscendingSumAlternate = (nums)=>{
+    let sum = nums[0];
+    let sumArray = [];
+    for(let i = 0; i < nums.length; i++){
+        if(nums[i] < nums[i + 1]){
+            sum += nums[i + 1];
+        }else{
+            sumArray.push(sum);
+            sum = nums[i + 1];
+        }
+    }
+    return Math.max(...sumArray);
+}
+
+//console.log(maxAscendingSumAlternate([12,17,15,13,10,11,12]))
 
 
 
