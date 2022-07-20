@@ -3304,6 +3304,56 @@ const maxProduct = (nums)=>{
 //console.log(maxProduct([1,5,4,5]));
 
 
+// large consequtive groups for similar letters
+const largeGroupPositions = (s)=>{
+    const sArray = s.split('');
+    let finalRanges = [];
+    let singleRange = [];
+    let checkCounter = 1;
+    let initialLetter = sArray[0];
+    // edge case for single letter
+    if(sArray.length < 3){
+        return [];
+    }
+    // edge case when all the letters are equal
+    if(sArray.every((letter)=> letter === sArray[0]) && sArray.length >= 3){
+        singleRange.push(sArray.length - 1);
+        singleRange.unshift(0);
+        finalRanges.push(singleRange);
+        return finalRanges;
+    }
+
+    let copyArray = [...sArray];
+    copyArray.push('');
+    // need to find consequtive occurence
+    for(let i = 1; i < copyArray.length; i++){
+        if(copyArray[i] !== initialLetter){
+            if(checkCounter >= 3){
+                let lastIndex = i - 1;
+                singleRange.push(lastIndex); // injecting the last index
+                let firstIndex = (lastIndex - checkCounter) + 1;
+                singleRange.unshift(firstIndex === -1 ? 0 : firstIndex);
+                finalRanges.push(singleRange);
+            }
+            initialLetter = copyArray[i];
+            singleRange = [];
+            checkCounter = 1;
+        }else{
+            checkCounter++;
+        }
+    }
+    return finalRanges;
+}
+
+//console.log(largeGroupPositions(
+  //  "abbxxxxzzy"))
+
+
+
+
+
+
+
 
 
 
