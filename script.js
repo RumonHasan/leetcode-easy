@@ -3346,7 +3346,75 @@ const largeGroupPositions = (s)=>{
 }
 
 //console.log(largeGroupPositions(
-  //  "abbxxxxzzy"))
+  //  "abbxxxxzzy"));
+
+
+
+const targetIndices = (nums, target)=>{
+    let indexArray = [];
+    let newArray = nums.sort((a, b)=> a - b);
+
+
+    for(let i = 0; i < newArray.length; i++){
+        if(newArray[i] === target){
+            indexArray.push(i);
+        }
+    }
+
+    return indexArray;
+}
+//console.log(targetIndices([1,2,5,2,3], 2));
+
+
+// game to remove stones
+const canWinNim = (n)=>{
+
+   return n % 4 ? true: false
+}
+
+//console.log(canWinNim(1));
+
+// swapping the letters in order to make it equal to target
+const buddyString = (s, goal)=>{
+    const sArray = s.split('');
+    let sCopy = [...sArray];
+    if(sCopy.length !== goal.length){
+        return false;
+    }
+    // case 1 when the string are the same and not swappable
+    if(s === goal){
+        let hash = {};
+        // double tilda represent double NOT bitwise operations
+        for(let c of s){
+            hash[c] ? hash[c]++ : hash[c] = 1;
+        }
+        for(let c in hash){
+            if(hash[c] > 1){
+                return true;
+            }
+        }
+        return false;
+    }
+    // final case of the other letters
+    let indexes = [];
+    for(let i = 0; i < sCopy.length; i++){
+        if(sCopy[i] !== goal[i]){
+            indexes.push(i);
+        }
+    }
+    if(indexes.length > 2){
+        return false;
+    }
+    if(sCopy[indexes[0]] === goal[indexes[1]] && sCopy[indexes[1]] === goal[indexes[0]]){
+        return true;
+    }else{
+        return false;
+    }
+
+}
+
+//console.log(buddyString("abcd","badc"))
+
 
 
 
