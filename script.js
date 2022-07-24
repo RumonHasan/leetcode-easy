@@ -3412,8 +3412,197 @@ const buddyString = (s, goal)=>{
     }
 
 }
+//console.log(buddyString("abcd","badc"));
 
-//console.log(buddyString("abcd","badc"))
+// problem to reorder spaces in the list of words while making sure that there is atleast equal number of spaces betweent the words
+
+const reorderSpaces = (text)=>{
+    let spaceCounter = 0;
+    let wordCounter = 0;
+    let extraSpaces = 0;
+    let finalString = '';
+
+    console.log(text.split(' '));
+
+    if(text.length === 1){
+        return text;
+    }
+
+    // let output = "practice   makes   perfect ";
+    // console.log('output', output.split(' '));
+
+    for(let i = 0; i < text.length; i++){
+        if(text[i] === ' '){
+            spaceCounter++;
+        }
+    }
+    let stringArray = text.split(' ');
+    for(let index in stringArray){
+        if(stringArray[index] !== ''){
+            wordCounter++;
+        }
+    }
+    let neededSpaces = spaceCounter / ((wordCounter === 1 ? 2 : wordCounter) - 1);
+    extraSpaces = Number.isInteger(neededSpaces) ? 0 : 1;
+    let spacesBetweenWords = Math.floor(neededSpaces);
+
+    console.log('spaceBetween', spacesBetweenWords, 'extra',extraSpaces);
+
+    // time to set the spaces between the words
+    let newArray = [];
+    for(let i = 0; i < stringArray.length; i++){
+        if(stringArray[i] !== ''){
+            newArray.push(stringArray[i]);
+        }
+    }
+    if(newArray.length === 1){
+         return finalString += newArray[newArray.length - 1] + (" ").repeat(spacesBetweenWords);
+    }
+    // populating spaces
+    for(let i = 0; i < newArray.length; i++){
+        if(i === newArray.length - 1){
+            finalString += newArray[i];
+            break;
+        }
+        finalString += newArray[i] + (" ").repeat(spacesBetweenWords);
+    }
+    if(extraSpaces > 0){
+        finalString += (" ").repeat(extraSpaces);
+    }
+    console.log(finalString.split(' '));
+    return finalString;
+}
+
+//console.log(reorderSpaces(
+   
+//"a b   c d"))
+
+
+const reorderSpaceNew = (text)=>{
+    console.log(text);
+    let arr = text.split(' ');
+    let totalSpace = arr.length - 1;
+    arr = arr.filter((element=> element !== ''));
+    console.log(totalSpace);
+    let spaceBetween = arr.length > 1 ? Math.floor(totalSpace / (arr.length - 1)): 0;
+    let spaceLeftOver = arr.length > 1 ?
+    totalSpace % (arr.length-1) : totalSpace;
+    console.log('spaceleft', spaceLeftOver);
+    console.log('spacebetween', spaceBetween);
+    console.log(arr);
+    let final = (arr.join(" ".repeat(spaceBetween)) + " ".repeat(spaceLeftOver));
+    console.log(final.split(' '));
+    console.log(final);
+}
+
+//console.log(reorderSpaceNew("  this   is  a sentence "));
+
+
+
+const distanceBetweenBusStops = (distance, start, destination)=>{
+    console.log(distance, 'start', start, 'destination:', destination);
+    // two approaches clockwise and anti clockwise
+    let clockWiseDistance = 0;
+    let antiClockWiseDistance = 0;
+    let finalDistance = Infinity;
+
+    // clock wise result - redistribution of array based on start
+    let clockWiseArray = distance.slice(start, distance.length);
+    let beforeStartElements = distance.slice(0, start);
+    for(let index in beforeStartElements){
+        clockWiseArray.push(beforeStartElements[index]);
+    }
+    console.log('clockWise',clockWiseArray);
+
+    for(let i = 0; i < clockWiseArray.length; i++){
+       clockWiseDistance += clockWiseArray[i + 1];
+       if(i === destination - 1){
+        break;
+       } 
+    }
+
+    // anti clockwise version of the array
+    let antiClockWiseArray = distance.slice(0, start + 1);
+
+    let afterStartElements = distance.slice(start + 1, distance.length);
+    for(let i = afterStartElements.length - 1; i >= 0; i--){
+        antiClockWiseArray.unshift(afterStartElements[i]);
+    }
+    console.log('antiClockwise',antiClockWiseArray);
+    
+    for(let i = antiClockWiseArray.length - 1; i >= 0; i--){
+        antiClockWiseDistance += antiClockWiseArray[i - 1];
+        if(i === destination){
+            break;
+        }
+    }
+
+    console.log('anti', antiClockWiseDistance, 'clock', clockWiseDistance)
+
+    finalDistance = Math.min(antiClockWiseDistance, clockWiseDistance);
+    return finalDistance;
+}
+
+//console.log(distanceBetweenBusStops([1,2,3,4], 0, 2));
+
+
+const distanceBetweenBusStopsNew = (distance, start, destination)=>{
+    // two approaches clockwise and anti clockwise
+    let clockWiseDistance = 0;
+    let antiClockWiseDistance = 0;
+    let finalDistance = Infinity;
+    let index = 0;
+    let clockArray = [];
+    let antiClockArray = [];
+
+    // clockwise;
+    while(index < distance.length){
+        let arraySegment = [];
+        if(index === start){
+            if(start > destination){
+                let secondSegment = [];
+                arraySegment = distance.slice(start, distance.length);
+                secondSegment = distance.slice(0, destination);
+                clockArray = [...arraySegment, ...secondSegment];
+            }else{
+                arraySegment = distance.slice(start, destination);
+                clockArray = [...arraySegment];
+            }
+        }
+        index++;
+    }
+    // anti clock wise
+    let antiIndex = distance.length - 1;
+    while (antiIndex > 0){
+        let localArraySegment = [];
+        if(start === 0){
+            localArraySegment = distance.slice(destination, distance.length);
+            antiClockArray = [...localArraySegment];
+            break;
+        }
+        if(antiIndex === start){
+            if(destination > start){
+                let secondSegment = [];
+                localArraySegment = distance.slice(0, start);
+                secondSegment = distance.slice(destination, distance.length);
+                antiClockArray = [...localArraySegment, ...secondSegment];
+            }else{
+                localArraySegment = distance.slice(destination, start);
+                antiClockArray = [...localArraySegment];
+            }
+            
+        }
+        antiIndex--;
+    }
+    clockWiseDistance = clockArray.reduce((acc, total)=> acc + total);
+    antiClockWiseDistance = antiClockArray.reduce((acc, total)=> acc + total);
+    finalDistance = Math.min(antiClockWiseDistance, clockWiseDistance);
+
+    return finalDistance;
+
+}
+
+//console.log(distanceBetweenBusStopsNew([14,21,8,35,30,21,28,19,10,25,16,23,14,13,0,3,30,9], 12, 3))
 
 
 
