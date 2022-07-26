@@ -3602,7 +3602,43 @@ const distanceBetweenBusStopsNew = (distance, start, destination)=>{
 
 }
 
-//console.log(distanceBetweenBusStopsNew([14,21,8,35,30,21,28,19,10,25,16,23,14,13,0,3,30,9], 12, 3))
+//console.log(distanceBetweenBusStopsNew([14,21,8,35,30,21,28,19,10,25,16,23,14,13,0,3,30,9], 12, 3));
+
+
+// arranging array frequency according to their occurences
+
+const frequencySort = (nums)=>{
+    console.log(nums);
+    const stack = [];
+    let arrayHash = {};
+    for(let i = 0; i < nums.length; i++){
+        if(arrayHash[nums[i]]){
+            arrayHash[nums[i]]++;
+        }else{
+            arrayHash[nums[i]] = 1;
+        }
+    }
+
+    // sorting object keys in order of the values
+    let sortedObject = Object.keys(arrayHash).sort((a, b)=>{
+        if(arrayHash[a] === arrayHash[b]){
+            return b - a;
+        }else{
+            return arrayHash[a] - arrayHash[b];
+        }
+    });
+
+    // populating stack;
+    for(let item of sortedObject){
+        for(let i = 0; i < arrayHash[item]; i++){
+            stack.push(parseInt(item));
+        }
+    }
+    return stack;
+    
+}
+
+//console.log(frequencySort([1,1,2,2,2,3]))
 
 
 
