@@ -3608,7 +3608,6 @@ const distanceBetweenBusStopsNew = (distance, start, destination)=>{
 // arranging array frequency according to their occurences
 
 const frequencySort = (nums)=>{
-    console.log(nums);
     const stack = [];
     let arrayHash = {};
     for(let i = 0; i < nums.length; i++){
@@ -3618,7 +3617,6 @@ const frequencySort = (nums)=>{
             arrayHash[nums[i]] = 1;
         }
     }
-
     // sorting object keys in order of the values
     let sortedObject = Object.keys(arrayHash).sort((a, b)=>{
         if(arrayHash[a] === arrayHash[b]){
@@ -3627,7 +3625,6 @@ const frequencySort = (nums)=>{
             return arrayHash[a] - arrayHash[b];
         }
     });
-
     // populating stack;
     for(let item of sortedObject){
         for(let i = 0; i < arrayHash[item]; i++){
@@ -3635,10 +3632,30 @@ const frequencySort = (nums)=>{
         }
     }
     return stack;
-    
 }
 
-//console.log(frequencySort([1,1,2,2,2,3]))
+//console.log(frequencySort([1,1,2,2,2,3]));
+
+
+
+// Occurences after Bigram
+const biagramOccurences = (text, first, second)=>{
+    const array = text.split(' ');
+    const stack = [];
+    console.log(array);
+
+    // getting the first and second character after the third
+    for(let i = 0; i < array.length; i++){
+        if(array[i] === first){
+            if(array[i + 1] === second){
+                stack.push(array[i + 2]);
+            }
+        }
+    }
+    return stack.filter((element)=> element !== undefined);
+}
+
+//console.log(biagramOccurences("alice is a good girl she is a good student","a","good"))
 
 
 
