@@ -3643,7 +3643,6 @@ const biagramOccurences = (text, first, second)=>{
     const array = text.split(' ');
     const stack = [];
     console.log(array);
-
     // getting the first and second character after the third
     for(let i = 0; i < array.length; i++){
         if(array[i] === first){
@@ -3658,6 +3657,49 @@ const biagramOccurences = (text, first, second)=>{
 //console.log(biagramOccurences("alice is a good girl she is a good student","a","good"))
 
 
+// deleting the unsorted columns
+const minDeletionSize = (strs)=>{
+    let sortedColCount = 0;
+    let grid = [];
+    for(let i = 0; i < strs.length; i++){
+        let singleRow = [];
+        for(let j = 0; j < strs[i].length; j++){
+            singleRow.push(strs[i][j]);
+        }
+        grid.push(singleRow);
+    }
+    let colIndex = 0;
+    let tempColumn = [];
+    let index = 0;
+
+    const checkColumn = (col)=>{
+        let copyCol = [...col];
+        col.sort();
+        if(copyCol.join('') !== col.join('')){
+            sortedColCount++;
+        }
+    }
+    // generating columns for individual matrices
+    while(index < grid.length){
+        tempColumn.push(grid[index][colIndex]);
+        index++;
+        // getting the columns
+        if(index === grid.length){
+            checkColumn(tempColumn);
+            tempColumn = [];
+            index = 0;
+            colIndex++;
+        }
+        if(colIndex === grid[0].length){
+            break;
+        }
+    }
+    return sortedColCount;
+
+}
+
+console.log(minDeletionSize(
+    ["rrjk","furt","guzm"]))
 
 
 
