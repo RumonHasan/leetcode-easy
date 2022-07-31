@@ -3661,6 +3661,7 @@ const biagramOccurences = (text, first, second)=>{
 const minDeletionSize = (strs)=>{
     let sortedColCount = 0;
     let grid = [];
+    // creating the matrix in order to extract the columns
     for(let i = 0; i < strs.length; i++){
         let singleRow = [];
         for(let j = 0; j < strs[i].length; j++){
@@ -3671,7 +3672,7 @@ const minDeletionSize = (strs)=>{
     let colIndex = 0;
     let tempColumn = [];
     let index = 0;
-
+    // checking equal column jointed strings in order to increase the delete count
     const checkColumn = (col)=>{
         let copyCol = [...col];
         col.sort();
@@ -3698,8 +3699,33 @@ const minDeletionSize = (strs)=>{
 
 }
 
-console.log(minDeletionSize(
-    ["rrjk","furt","guzm"]))
+//console.log(minDeletionSize(
+    //["rrjk","furt","guzm"]))
+
+
+// return average salary
+
+const average = (salary)=>{ 
+    let max = -Infinity;
+    let min = Infinity;
+
+    max = Math.max(...salary);
+    min = Math.min(...salary);
+
+    let maxFilter = salary.filter((val)=> val !== max);
+    let finalFilter = maxFilter.filter((val)=> val !== min);
+    
+    // getting the average
+    let total = finalFilter.reduce((a, c)=> a + c);
+    let average = 0;
+    
+    return average = total / finalFilter.length;
+
+}
+
+//console.log(average([4000,3000,1000,2000]))
+
+
 
 
 
