@@ -3735,6 +3735,40 @@ const subtractProductAndSum = (n)=>{
 //console.log(subtractProductAndSum(234))
 
 
+const mergeAlternatively = (word1, word2)=>{
+    // for two cases one for equal and one for not equal
+    let finalString = '';
+    if(word1.length === word2.length){
+        for(let i = 0; i < word1.length; i++){
+            finalString += word1[i];
+            finalString += word2[i];
+        }
+    }else{
+        // check which is smaller
+        if(word1.length < word2.length){
+            let newWord2 = word2.slice(0, word1.length);
+            let remainingWord2 = word2.slice(word1.length, word2.length);
+            for(let i = 0; i < word1.length; i++){
+                finalString += word1[i];
+                finalString += newWord2[i];
+            }
+            finalString += remainingWord2;
+        }else{
+            let newWord1 = word1.slice(0, word2.length);
+            let remainingWord1 = word1.slice(word2.length, word1.length);
+            for(let i = 0; i < word2.length; i++){
+                finalString += newWord1[i];
+                finalString += word2[i];
+            }
+            finalString += remainingWord1;
+        }
+    }
+    return finalString;
+}
+
+//console.log(mergeAlternatively('abc','pqr'));
+
+
 
 
 
