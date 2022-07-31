@@ -3723,7 +3723,17 @@ const average = (salary)=>{
 
 }
 
-//console.log(average([4000,3000,1000,2000]))
+//console.log(average([4000,3000,1000,2000]));
+
+const subtractProductAndSum = (n)=>{
+    const array = n.toString().split('');
+    let sum = array.reduce((a, c)=> parseInt(a) + parseInt(c));
+    let prod = array.reduce((a, c)=> parseInt(a) * parseInt(c));
+    return prod - sum;
+}
+
+//console.log(subtractProductAndSum(234))
+
 
 
 
