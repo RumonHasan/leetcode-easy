@@ -3812,6 +3812,42 @@ const repeatedCharacter = (s)=>{
 
 //console.log(repeatedCharacter("abccbaacz"))
 
+const numberOfPairs = (nums)=>{
+    let pairCount = 0;
+    let leftOverCount = 0;
+    let index = 0;
+    let hash = {};
+
+    // edge case
+    if(nums.length === 1){
+        return [0, 1]
+    }
+    // do something 
+    while(index < nums.length){
+        hash[nums[index]] ? hash[nums[index]]++ : hash[nums[index]] = 1;
+        index++;
+    }
+    let evenIndexes = 0;
+    for(const [_, value] of Object.entries(hash)){
+        if(value % 2 === 0){
+            evenIndexes += value;
+        }else{
+           // odd
+           if(value > 1){
+            let temp = Math.floor(value / 2);
+            pairCount += temp;
+           }
+           let remainder = value % 2;
+           leftOverCount += remainder;
+        }
+    }
+    pairCount += evenIndexes / 2;
+    return [pairCount, leftOverCount];
+}
+
+console.log(numberOfPairs(
+    [89,5,7,36,5,85,83,77,56,44,90,27,56,100,67,27,61,18,29,15,44,11,81,83,38,58,14,46,23,70,63,76,75,69,21,88,7,3,28,2,28,89,32,43,9,93,21,63,76,45,13,94,16,85,16,52,46,7,60,50,69,4,82,81,57,11,14,38,78,27,45,3,12,14,95,71,72,40,27,82,66,99,7,23,84,66,7,3,56,38,43,37,4,90,85,80,54,42,67,2]))
+
 
 
 
