@@ -2308,6 +2308,8 @@ const summaryRanges = (nums)=>{
 }
 //console.log(summaryRanges([0,1,2,3,5,7,8]))
 
+
+// important 
 const minOperations = (s)=>{
     const sArray = s.split(''); 
     // alternate versions
@@ -2366,6 +2368,8 @@ const minOperations = (s)=>{
    // "101101111"))
 
 
+
+   // important
 const countCharacters = (words, chars)=>{
     const charArray = chars.split('');
     let wordListArray = [];
@@ -3770,6 +3774,43 @@ const mergeAlternatively = (word1, word2)=>{
 
 
 
+// repeated character
+const repeatedCharacter = (s)=>{
+    const array = s.split('');
+    console.log(array);
+    // check which appears twice
+    let indexArray = [];
+    
+    // for(let i = 0; i < array.length; i++){
+    //     if(indexArray.some((element)=> element.value === array[i])){
+    //         indexArray.map((element)=>
+    //             element.value === array[i] ? {...element, index: element.index.push(i)}: element
+    //         )
+    //     }else{
+    //         indexArray.push({value: array[i], index: [i]});
+    //     }
+    // }
+    // let newIndexArray = indexArray.filter((element)=> element.index.length > 1);
+
+    // for(let i = 0; i < newIndexArray.length; i++){
+    //     console.log(newIndexArray[i]);
+
+    // }
+
+    // set approach
+
+    let set = new Set();
+
+    for(let index in array){
+        if(set.has(array[index])){
+            return array[index]
+        }else{
+            set.add(array[index]);
+        }
+    }
+}
+
+//console.log(repeatedCharacter("abccbaacz"))
 
 
 
