@@ -3850,6 +3850,7 @@ const numberOfPairs = (nums)=>{
 
 
 // calculate the digit sum of a string and group em in the size of K
+// leetcode 2243
 const calculateDigitSum = (s, k)=>{
     if(s.length === k){
         return s;
@@ -3893,8 +3894,37 @@ const arrayGrouping = (array, k)=>{
 }
 
 
-console.log(calculateDigitSum(
-    "01234567890", 100))
+//console.log(calculateDigitSum(
+  //  "01234567890", 100));
+
+
+
+// number after reversal should be the same
+const isSomeAfterReversal = (num)=>{
+    const numArray = num.toString().split(''); // number can be also divided without digit conversion
+    if(numArray.length === 1){
+        return true;
+    }
+    let final = [];
+    let reverseVersion = [];
+    // note reversing can also be done with the inbuilt reverse funciton but for loop approach is better in terms of speed of the code
+    for(let i = numArray.length - 1; i >= 0; i--){
+        reverseVersion.push(numArray[i]);
+    } 
+    // boolean value is used for intial zero filteration
+    let zeroCheck = true;
+    for(let i = 0; i < reverseVersion.length; i++){
+        if(zeroCheck && parseInt(reverseVersion[i]) === 0){
+            continue; // skipped when there is boolean and value is changed to true
+        }else{
+            zeroCheck = false;
+            final.push(reverseVersion[i]);
+        }
+   
+    }
+    return final.length === numArray.length ? true : false;
+}
+//console.log(isSomeAfterReversal(18))
 
 
 
