@@ -3845,9 +3845,56 @@ const numberOfPairs = (nums)=>{
     return [pairCount, leftOverCount];
 }
 
-console.log(numberOfPairs(
-    [89,5,7,36,5,85,83,77,56,44,90,27,56,100,67,27,61,18,29,15,44,11,81,83,38,58,14,46,23,70,63,76,75,69,21,88,7,3,28,2,28,89,32,43,9,93,21,63,76,45,13,94,16,85,16,52,46,7,60,50,69,4,82,81,57,11,14,38,78,27,45,3,12,14,95,71,72,40,27,82,66,99,7,23,84,66,7,3,56,38,43,37,4,90,85,80,54,42,67,2]))
+//console.log(numberOfPairs(
+    //[89,5,7,36,5,85,83,77,56,44,90,27,56,100,67,27,61,18,29,15,44,11,81,83,38,58,14,46,23,70,63,76,75,69,21,88,7,3,28,2,28,89,32,43,9,93,21,63,76,45,13,94,16,85,16,52,46,7,60,50,69,4,82,81,57,11,14,38,78,27,45,3,12,14,95,71,72,40,27,82,66,99,7,23,84,66,7,3,56,38,43,37,4,90,85,80,54,42,67,2]))
 
+
+// calculate the digit sum of a string and group em in the size of K
+const calculateDigitSum = (s, k)=>{
+    if(s.length === k){
+        return s;
+    };
+    if(s.length < k){
+        return s;
+    }
+    const array = s.split('');
+
+    let string = arrayGrouping(array, k);
+    if(string.length <= k){
+        return string;
+    }else{
+        return calculateDigitSum(string, k);
+    }
+
+}
+const arrayGrouping = (array, k)=>{
+    let index = 0;
+    let groups = [];
+    let singleGroup = [];
+    let groupIndex = 0;
+    while(index < array.length){
+        let sum;
+        singleGroup.push(array[index]);
+        groupIndex++;
+        if(index === array.length - 1){
+            sum = singleGroup.reduce((a, b)=> parseInt(a) + parseInt(b));
+            groups.push(sum.toString());
+            break;
+        }
+        if(groupIndex === k){
+            sum = singleGroup.reduce((a, b)=> parseInt(a) + parseInt(b));
+            groups.push(sum.toString());
+            singleGroup = [];
+            groupIndex = 0;
+        }
+        index++
+    }
+    return groups.join('');
+}
+
+
+console.log(calculateDigitSum(
+    "01234567890", 100))
 
 
 
