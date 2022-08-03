@@ -3924,7 +3924,40 @@ const isSomeAfterReversal = (num)=>{
     }
     return final.length === numArray.length ? true : false;
 }
-//console.log(isSomeAfterReversal(18))
+//console.log(isSomeAfterReversal(18));
+
+
+const maxProductDifference = (nums)=>{
+    // my bad i see now
+    // edge case 1
+    if(nums.every((element)=> element === nums[0])){
+        return 0;
+    }
+    // subarashi....
+    let maxProduct = -Infinity;
+    let minProduct = Infinity;
+    let max1 = Math.max(...nums);
+    let index1 = nums.indexOf(max1);
+    let newMaxArray = [...nums];
+    newMaxArray.splice(index1, 1);
+    let max2 = Math.max(...newMaxArray);
+    // maxProduct = max1 * max2;
+    maxProduct = max2 * max1;
+    // min time baby
+    let min1 = Math.min(...nums);
+    let index2 = nums.indexOf(min1);
+    let newMinArray = [...nums];
+    newMinArray.splice(index2, 1);
+    let min2 = Math.min(...newMinArray);
+
+    minProduct = min1 * min2;
+
+    return maxProduct - minProduct;
+}
+
+console.log(maxProductDifference(
+[2,9,5,9,1]))
+
 
 
 
