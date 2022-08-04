@@ -3976,7 +3976,41 @@ const countElements = (nums)=>{
 
     return elementCounter;
 }
-console.log(countElements([11,7,2,15]))
+//console.log(countElements([11,7,2,15]));
+
+
+// leetcode bank 1716
+
+const totalMoney = (n)=>{
+    let totalMoney = 0;
+    const array = Array.from(Array(n), (_, index)=> index + 1); // making an array of length
+    let weekCounter = 0;
+    let totalDays = n;
+    let dayCounter = 0;
+
+    for(let i = 0; i < array.length; i++){
+        totalMoney += array[i];
+        totalDays--;
+        dayCounter++;
+        if(totalDays === 0){
+            break;
+        }
+        if(dayCounter === 7){
+            if(totalDays === 0){
+                break;
+            }
+            weekCounter += 1;
+            i = weekCounter - 1;
+            dayCounter = 0;
+            continue;
+        }
+    }
+    return totalMoney;
+}
+
+//console.log(totalMoney(20));
+
+
 
 
 
