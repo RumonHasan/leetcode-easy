@@ -3955,8 +3955,31 @@ const maxProductDifference = (nums)=>{
     return maxProduct - minProduct;
 }
 
-console.log(maxProductDifference(
-[2,9,5,9,1]))
+//console.log(maxProductDifference(
+//[2,9,5,9,1]))
+
+
+// leetcode 2148
+// finding elements that have strictly larger and smaller elements
+const countElements = (nums)=>{
+    let elementCounter = 0;
+    let minElement = Math.min(...nums);
+    let maxElement = Math.max(...nums);
+
+    for(let i = 0; i < nums.length ; i++){
+        let value = nums[i];
+        if(value === minElement || value === maxElement){
+            continue;
+        }
+        elementCounter++;
+    }
+
+    return elementCounter;
+}
+console.log(countElements([11,7,2,15]))
+
+
+
 
 
 
