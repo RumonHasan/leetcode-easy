@@ -4010,6 +4010,22 @@ const totalMoney = (n)=>{
 
 //console.log(totalMoney(20));
 
+// max distance between two differently colored houses
+
+const maxDistance = (colors)=>{
+    let maxDistance = -Infinity;
+    for(let i = 0; i < colors.length; i++){
+        for(let j = i + 1; j < colors.length; j++){
+            if(colors[i] !== colors[j]){
+                maxDistance = Math.max(maxDistance, Math.abs(i - j));
+            }
+        }
+    }
+    return maxDistance;
+}
+
+//console.log(maxDistance([1,1,1,6,1,1,1]))
+
 
 
 
