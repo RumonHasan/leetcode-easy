@@ -4051,7 +4051,34 @@ const countEven = (num)=>{
     return counter;
 }
 
-//console.log(countEven(30))
+//console.log(countEven(30));
+
+// leetcode 2124
+// return true if all the a come before b
+const checkStringRepeat = (s)=>{
+    let array = s.split('');
+    let counter = 0;
+    // edge case for all characters equal to b 
+    if(array.every((element)=> element === array[0])){
+        return true;
+    }
+    for(let i = 0; i < array.length; i++){
+        if(array[i] === 'a'){
+            counter++;
+        }
+    }
+    let newArray = array.slice(0, counter);
+    if(newArray.every((element)=> element === 'a')){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+//console.log(checkStringRepeat("abab"))
+
+
+
 
 
 
