@@ -4024,7 +4024,36 @@ const maxDistance = (colors)=>{
     return maxDistance;
 }
 
-//console.log(maxDistance([1,1,1,6,1,1,1]))
+//console.log(maxDistance([1,1,1,6,1,1,1]));
+
+// leetcode  2180
+// gotta return sum of digits as even
+const countEven = (num)=>{
+    let counter = 0;
+    let array = Array.from(Array(num), (_,element)=>element + 1);
+    const checkSum = (digits)=>{
+        const digitArray = digits.toString().split('');
+        const sum = digitArray.length === 1 ? parseInt(digitArray[0]) : 
+        digitArray.reduce((a, b)=> parseInt(a) + parseInt(b));
+        if(sum % 2 === 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    for(let i = 0; i < array.length; i++){
+        if(checkSum(array[i])){
+            counter++;
+        }else{
+            continue;
+        }
+    }
+    return counter;
+}
+
+//console.log(countEven(30))
+
+
 
 
 
