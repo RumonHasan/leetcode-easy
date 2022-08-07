@@ -4078,6 +4078,18 @@ const checkStringRepeat = (s)=>{
 //console.log(checkStringRepeat("abab"))
 
 
+const reversePrefix = (word, ch)=>{
+    const wordArray = word.split('');
+    let occurence = word.indexOf(ch);
+    let subArray = wordArray.slice(0, occurence + 1).reverse();
+    let remainingArray = wordArray.slice(occurence + 1, wordArray.length);
+    
+    return subArray.join('') + remainingArray.join('')
+}   
+
+//console.log(reversePrefix("abcdefd", "d"))
+
+
 
 
 
