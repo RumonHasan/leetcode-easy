@@ -4087,7 +4087,49 @@ const reversePrefix = (word, ch)=>{
     return subArray.join('') + remainingArray.join('')
 }   
 
-//console.log(reversePrefix("abcdefd", "d"))
+//console.log(reversePrefix("abcdefd", "d"));
+
+
+const rearrangeCharacters = (s, target)=>{
+    let targetHash = {};
+    let wordCounter = 0;
+    const targetArray = target.split('');
+    for(let index in targetArray){
+        if(targetHash[targetArray[index]]){
+            targetHash[targetArray[index]]++;
+        }else{
+            targetHash[targetArray[index]] = 0;
+        }
+    }
+    // getting occurence;
+    const array = s.split('');
+    // hash population
+    for(let i = 0; i < array.length; i++){
+        if(array[i] in targetHash){
+            targetHash[array[i]]++;
+        }
+    }
+    // checking how many target words one can make
+    let stringCollection = [];
+    while(targetHash[target[0]] !== 0){
+        let tempString = '';
+        for(let i = 0; i < targetArray.length ; i++){
+            if(targetHash[targetArray[i]]){
+                tempString += targetArray[i];
+                targetHash[targetArray[i]]--;
+            }
+        }
+        stringCollection.push(tempString);
+    }
+    for(let i = 0; i < stringCollection.length; i++){
+        if(stringCollection[i] === target){
+            wordCounter++;
+        }
+    }
+    return wordCounter;
+}
+
+//console.log(rearrangeCharacters("abcba", "abc"))
 
 
 
