@@ -4101,7 +4101,6 @@ const rearrangeCharacters = (s, target)=>{
             targetHash[targetArray[index]] = 0;
         }
     }
-    // getting occurence;
     const array = s.split('');
     // hash population
     for(let i = 0; i < array.length; i++){
@@ -4129,7 +4128,32 @@ const rearrangeCharacters = (s, target)=>{
     return wordCounter;
 }
 
-//console.log(rearrangeCharacters("abcba", "abc"))
+//console.log(rearrangeCharacters("abcba", "abc"));
+
+// to find good substrings with distinct letters
+const countGoodSubstrings = (s)=>{
+    const array = s.split('');
+    let counter = 0;
+    let collection = [];
+    for(let i = 0; i < array.length; i++){
+        let substring = array.slice(i, 3 + i);
+        if(substring.length === 3){
+            collection.push(substring);
+        }
+    }
+    // getting distinct substring
+    for(let i = 0; i < collection.length; i++){
+        let arraySet = Array.from(new Set([...collection[i]]));
+        if(arraySet.length === 3){
+            counter++;
+        }
+    }
+    return counter;
+}
+
+//console.log(countGoodSubstrings("aababcabc"))
+
+
 
 
 
