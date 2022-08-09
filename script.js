@@ -4151,7 +4151,25 @@ const countGoodSubstrings = (s)=>{
     return counter;
 }
 
-//console.log(countGoodSubstrings("aababcabc"))
+//console.log(countGoodSubstrings("aababcabc"));
+
+// note j index has to be bigger
+const maximumDifference = (nums)=>{
+    let difference = 0;
+    for(let i = 0; i < nums.length; i++){
+        for(let j = i + 1; j < nums.length; j++){
+            if(nums[j] > nums[i]){
+                difference = Math.max(difference, Math.abs(nums[i] - nums[j]));
+            }
+        }
+    }
+    return difference === 0 ? -1: difference;
+}
+
+//console.log(maximumDifference([7,1,5,4]));
+
+
+
 
 
 
