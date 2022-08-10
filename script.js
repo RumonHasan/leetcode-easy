@@ -4169,6 +4169,36 @@ const maximumDifference = (nums)=>{
 //console.log(maximumDifference([7,1,5,4]));
 
 
+// leetcode 2027
+
+const minimumMoves = (s)=>{
+    const array = s.split('');
+    if(array.length === 3){
+        return 1;
+    }
+    if(array.every((element)=> element === 'O')){
+        return 0;
+    }
+    // only three chars can be selected at once
+    let turnCounter = 0;
+    for(let i = 0; i < array.length; i++){
+        if(array[i] === 'X'){
+            turnCounter++;
+            i += 2;
+        }
+    }
+    return turnCounter;
+}
+
+//console.log(minimumMoves("XXOX0X"))
+
+
+
+
+
+
+
+
 
 
 
