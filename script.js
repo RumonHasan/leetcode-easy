@@ -4216,6 +4216,36 @@ const numSpecial = (mat)=>{
 //console.log(numSpecial([[0,0,1],[0,1,0],[0,0,1]]))
 
 
+const destCity = (paths)=>{
+    // unique city meaning there is no outward path going to any other city other than the individual city
+    let pathCollection = [];
+    for(let i = 0; i < paths.length; i++){
+        let row = paths[i];
+        for(let j = 0; j < row.length; j++){
+            pathCollection.push(paths[i][j]);
+        }
+    }
+    let pathHash = {};
+    for(let i = 0; i < pathCollection.length; i++){
+        pathHash[pathCollection[i]] ? pathHash[pathCollection[i]]++ : pathHash[pathCollection[i]] = 1;
+    }
+    let singlePaths = [];
+    for(const [key, value] of Object.entries(pathHash)){
+        if(value === 1){
+            singlePaths.push(key);
+        }
+    }
+    // rechecking the matrix
+    for(let i = 0; i < paths.length; i++){
+        for(let j = 0; j < paths[i].length; j++){
+            if(singlePaths.includes(paths[i][j]) && j === paths[i].length - 1){
+                return paths[i][j];
+            }
+        }
+    }
+}
+console.log(destCity([["pYyNGfBYbm","wxAscRuzOl"],["kzwEQHfwce","pYyNGfBYbm"]]))
+
 
 
 
