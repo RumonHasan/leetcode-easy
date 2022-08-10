@@ -4193,6 +4193,29 @@ const minimumMoves = (s)=>{
 //console.log(minimumMoves("XXOX0X"))
 
 
+// special column in a binary matrix
+
+const numSpecial = (mat)=>{
+    let counter = 0;
+    for(let i = 0; i < mat.length; i++){
+        for(let j = 0; j < mat[i].length; j++){
+            if(mat[i][j]=== 1){
+                // do something
+                let sumRow = mat[i].reduce((a, current)=> a + current);
+                let col = mat.map((array)=> array[j]);
+                let sumCol = col.reduce((a, current)=> a + current);
+                if(sumCol === 1 && sumRow === 1){
+                    counter++;
+                }
+            } 
+        }
+    }
+    return counter;
+}
+
+//console.log(numSpecial([[0,0,1],[0,1,0],[0,0,1]]))
+
+
 
 
 
