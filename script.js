@@ -4244,7 +4244,37 @@ const destCity = (paths)=>{
         }
     }
 }
-console.log(destCity([["pYyNGfBYbm","wxAscRuzOl"],["kzwEQHfwce","pYyNGfBYbm"]]))
+//console.log(destCity([["pYyNGfBYbm","wxAscRuzOl"],["kzwEQHfwce","pYyNGfBYbm"]]))
+
+
+// longest continuous sequence of 1 should be bigger than 0
+const checkZeroOnes = (s)=>{
+    const array = s.split('');
+    let oneSubcounter = 0;
+    let zeroSubcounter = 0;
+    // max values of the sub counter
+    let maxOneSubcounter = -Infinity;
+    let maxZeroSubcounter = -Infinity;
+    array.push(''); // to end the countering till the end of the last element
+    for(let i = 0; i < array.length; i++){
+        if(array[i] === '1'){
+            oneSubcounter++;
+        }else{
+            maxOneSubcounter = Math.max(maxOneSubcounter, oneSubcounter);
+            oneSubcounter = 0;
+        }
+        if(array[i] === '0'){
+            zeroSubcounter++;
+        }else{
+            maxZeroSubcounter = Math.max(maxZeroSubcounter, zeroSubcounter);
+            zeroSubcounter = 0;
+        }
+    }
+    return maxOneSubcounter > maxZeroSubcounter ? true: false;
+}
+
+console.log(checkZeroOnes("111000"))
+
 
 
 
