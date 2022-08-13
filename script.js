@@ -4273,7 +4273,43 @@ const checkZeroOnes = (s)=>{
     return maxOneSubcounter > maxZeroSubcounter ? true: false;
 }
 
-console.log(checkZeroOnes("111000"))
+//console.log(checkZeroOnes("111000"));
+
+
+// leetcode 2259 - remove digit to maximize the sum
+
+const removeDigit = (number, digit)=>{
+    const array = number.split('');
+    let maxNum = '';
+
+    const checkRemainingNumber = (number, index)=>{
+        //note strings can be compared to even though they are number strings
+        if(number > maxNum){
+            maxNum = number;
+        }
+    };
+    for(let i = 0; i < array.length; i++){
+        let segmentOne;
+        let segmentTwo;
+        let segment;
+        if(array[i] === digit){
+            if(i === 0){
+                segment = array.slice(1, array.length);
+                
+            }else if(i === array.length - 1){
+                segment = array.slice(0, array.length - 1);
+            }else{
+                segmentOne = array.slice(0, i);
+                segmentTwo = array.slice(i + 1, array.length);
+                segment = [...segmentOne, ...segmentTwo];
+            }
+            checkRemainingNumber(segment.join(''), i);
+        }
+    }
+    return maxNum;
+}
+
+//console.log(removeDigit("5855919731999967729162624993368963937138395448528343754118382247464456496439695553669381787948269168", "8"))
 
 
 
