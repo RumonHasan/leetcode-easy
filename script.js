@@ -4281,8 +4281,7 @@ const checkZeroOnes = (s)=>{
 const removeDigit = (number, digit)=>{
     const array = number.split('');
     let maxNum = '';
-
-    const checkRemainingNumber = (number, index)=>{
+    const checkRemainingNumber = (number)=>{
         //note strings can be compared to even though they are number strings
         if(number > maxNum){
             maxNum = number;
@@ -4303,13 +4302,29 @@ const removeDigit = (number, digit)=>{
                 segmentTwo = array.slice(i + 1, array.length);
                 segment = [...segmentOne, ...segmentTwo];
             }
-            checkRemainingNumber(segment.join(''), i);
+            checkRemainingNumber(segment.join(''));
         }
     }
     return maxNum;
 }
 
 //console.log(removeDigit("5855919731999967729162624993368963937138395448528343754118382247464456496439695553669381787948269168", "8"))
+
+// number of strings that appear as substring
+
+const numOfStrings = (patterns, word)=>{
+    let subCounter = 0;
+    for(let i = 0; i < patterns.length; i++){
+       if(word.includes(patterns[i])){
+            subCounter++;
+       }
+    }
+    return subCounter;
+}
+
+//console.log(numOfStrings(
+ //  ["a","b","c"], "aaaaabbbbb"))
+
 
 
 
