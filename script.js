@@ -4326,6 +4326,45 @@ const numOfStrings = (patterns, word)=>{
  //  ["a","b","c"], "aaaaabbbbb"))
 
 
+ const shortestToChar = (s, c)=>{
+    const array = s.split('');
+    let finalArray = [];
+    let indexes = [];
+    let minVal = Infinity;
+    let closeIndexes = [];
+
+    for(let i = 0; i < array.length; i++){
+        if(array[i] === c){
+            indexes.push(i);
+        }
+    }
+    for(let i = 0; i < indexes.length; i++){
+        // checking through eveyr letter to check proximal indexes
+        let singleCombo = [];
+        for(let j = 0; j < array.length; j++){
+            let singleIndex = Math.abs(indexes[i] - j);
+            singleCombo.push(singleIndex);
+        }
+        finalArray.push(singleCombo);
+    }
+    // get the smallest of indexes from the collection of matrices
+    for(let i = 0; i < finalArray.length; i++){
+        let singleRow = finalArray[i];
+        for(let j = 0; j < singleRow.length; j++){
+            if(i === 0){
+                let column = finalArray.map((row)=> row[j]);
+                minVal = Math.min(...column);
+                closeIndexes.push(minVal);
+            }else{
+                break;
+            }
+        }
+    }
+    return closeIndexes;
+ }
+
+ console.log(shortestToChar("loveleetcode", "e"));
+ //[3,2,1,0,1,0,0,1,2,2,1,0]
 
 
 
