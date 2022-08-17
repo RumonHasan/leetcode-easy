@@ -4363,8 +4363,21 @@ const numOfStrings = (patterns, word)=>{
     return closeIndexes;
  }
 
- console.log(shortestToChar("loveleetcode", "e"));
+ //console.log(shortestToChar("loveleetcode", "e"));
  //[3,2,1,0,1,0,0,1,2,2,1,0]
+
+ 
+ // recursive find multiple values
+ const findFinalValue = (nums, original)=>{
+    if(nums.includes(original)){
+        return findFinalValue(nums, original * 2);
+    }else{
+        return original;
+    }
+
+ }
+
+ console.log(findFinalValue([5,3,6,1,12], 3))
 
 
 
