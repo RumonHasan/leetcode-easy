@@ -4366,7 +4366,6 @@ const numOfStrings = (patterns, word)=>{
  //console.log(shortestToChar("loveleetcode", "e"));
  //[3,2,1,0,1,0,0,1,2,2,1,0]
 
- 
  // recursive find multiple values
  const findFinalValue = (nums, original)=>{
     if(nums.includes(original)){
@@ -4376,8 +4375,39 @@ const numOfStrings = (patterns, word)=>{
     }
 
  }
+ //console.log(findFinalValue([5,3,6,1,12], 3));
 
- console.log(findFinalValue([5,3,6,1,12], 3))
+
+
+ // count hills and valleys
+ const countHillValley = (nums)=>{
+    let valleyHillCounter = 0;
+    // look for number clusters and removing em
+    const stack = [];
+    for(let i = 0; i < nums.length; i++){
+        if(nums[i] === nums[i + 1]){
+            continue;
+        }else{
+            stack.push(nums[i]);
+        }
+    }
+    for(let i = 0; i < stack.length; i++){
+        if(i === 0 || i === stack.length - 1){
+            continue;
+        } 
+        if(stack[i - 1] < stack[i] && stack[i + 1] < stack[i]){
+            valleyHillCounter++;
+        }
+        if(stack[i - 1] > stack[i] && stack[i + 1] > stack[i]){
+            valleyHillCounter++;
+        }
+    }
+    return valleyHillCounter;
+
+ }
+
+ //console.log(countHillValley([2,4,1,1,1,1,6,5]))
+
 
 
 
