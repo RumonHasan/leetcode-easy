@@ -4377,8 +4377,6 @@ const numOfStrings = (patterns, word)=>{
  }
  //console.log(findFinalValue([5,3,6,1,12], 3));
 
-
-
  // count hills and valleys
  const countHillValley = (nums)=>{
     let valleyHillCounter = 0;
@@ -4406,7 +4404,49 @@ const numOfStrings = (patterns, word)=>{
 
  }
 
- //console.log(countHillValley([2,4,1,1,1,1,6,5]))
+ //console.log(countHillValley([2,4,1,1,1,1,6,5]));
+
+
+ // shortest distance to char
+
+ const shortestDistanceToChar = (s, c)=>{
+    const array = s.split('');
+    let eIndexes = [];
+    let finalArray = [];
+    let matrix = [];
+    for(let i = 0; i < array.length; i++){
+        if(array[i] === c){
+            eIndexes.push(i);
+        }
+    }
+    const checkPartition = (array, index)=>{
+        let tempArray = [];
+        for(let i = 0; i < array.length; i++){
+            tempArray.push(Math.abs(index - i));
+        }
+        matrix.push(tempArray);
+    }
+    let index = 0;
+    for(let i = 0; i < array.length; i++){
+        if(eIndexes[index] === i){
+            checkPartition(array, eIndexes[index]);
+            index++;
+        }
+    }
+    for(let i = 0; i < matrix.length; i++){
+        for(let j = 0; j < matrix[i].length; j++){
+            if(i == 0){
+                let col = matrix.map((row)=> row[j]);
+                let val = Math.min(...col);
+                finalArray.push(val)
+            }
+        }
+    }
+    return finalArray;
+
+ }
+
+ //console.log(shortestDistanceToChar("loveleetcode", "e"))
 
 
 
