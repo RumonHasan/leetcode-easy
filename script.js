@@ -4487,7 +4487,36 @@ const numOfStrings = (patterns, word)=>{
 
  }
  // [3,2,1,0,1,0,0,1,2,2,1,0]
- console.log(altShortestToChar("loveleetcode", "e"))
+ //console.log(altShortestToChar("loveleetcode", "e"));
+
+ const mostFrequent = (nums, key)=>{
+    let hash = {};
+    for(let i = 0; i < nums.length; i++){
+        if(i === 0){
+            continue;
+        }
+        if(nums[i - 1] === key){
+            if(hash[nums[i]]){
+                hash[nums[i]]++
+            }else{
+                hash[nums[i]] = 1;
+            }
+        }
+    }
+    let vals = Object.values(hash);
+    let maxVal = Math.max(...vals);
+
+    for(let [key, value] of Object.entries(hash)){
+        if(value === maxVal){
+            return parseInt(key);
+        }
+    }
+ }
+
+ //console.log(mostFrequent([2,1000,2,1000,2,3], 2))
+
+
+
 
 
 
