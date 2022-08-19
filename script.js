@@ -4446,7 +4446,48 @@ const numOfStrings = (patterns, word)=>{
 
  }
 
- //console.log(shortestDistanceToChar("loveleetcode", "e"))
+ //console.log(shortestDistanceToChar("loveleetcode", "e"));
+
+
+ // alternative way with one for loops
+
+ const altShortestToChar = (s, c)=>{
+    const array = s.split('');
+    // filling up an empty populated array
+    let finalArray = new Array(array.length).fill(null);
+    let finalArray2 =  new Array(array.length).fill(null);
+    let ultimateArray = [];
+    let cIndex = null;
+    let cSecondIndex = null;
+    let check = false;
+    const checkIndex = (index)=>{
+        if(array[index] === c){
+            check ? cSecondIndex = index : cIndex = index;
+        }
+        let indexDifference = cIndex === null ? 0 : Math.abs(index - (check ? cSecondIndex : cIndex));
+        check ? finalArray2[index] = indexDifference : finalArray[index] = indexDifference;
+    }
+    // two prong approach... amma attack from both sides
+    for(let i = 0; i < array.length; i++){
+        checkIndex(i);
+    }
+    // reverse side
+    check = true;
+    for(let i = array.length - 1; i >= 0; i--){
+        checkIndex(i);
+    }
+    for(let i = 0; i < finalArray.length; i++){
+        if(finalArray[i] === 0 && finalArray2[i] !== 0){
+            ultimateArray.push(finalArray2[i]);
+        }else{
+            ultimateArray.push(Math.min(finalArray[i], finalArray2[i]));
+        }
+    }
+    return ultimateArray;
+
+ }
+ // [3,2,1,0,1,0,0,1,2,2,1,0]
+ console.log(altShortestToChar("loveleetcode", "e"))
 
 
 
