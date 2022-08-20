@@ -4536,6 +4536,44 @@ const numOfStrings = (patterns, word)=>{
  //console.log(countQuadruplets([9,6,8,23,39,23]));
 
  
+ // find middle index
+
+ const findMiddleIndex = (nums)=>{
+    // checking whether the both sides sum are equal or not
+    if(nums.length === 1){
+        return 0;
+    }
+    let finalIndex = 0;
+    for(let i = 0; i < nums.length; i++){
+        let tempIndex;
+        tempIndex = i;
+        let sumRight = 0;
+        let sumLeft = 0;
+        // partitions
+        let rightPartition = nums[tempIndex + 1] === (null || undefined) ? [0]
+        : nums.slice(tempIndex + 1, nums.length);
+        let leftPartition = nums[tempIndex - 1] == (null || undefined) ? [0] :
+        nums.slice(0, tempIndex);
+
+        // checking the sum
+        sumRight = rightPartition.reduce((a, b)=> a + b);
+        sumLeft = leftPartition.reduce((a, b)=> a + b);
+
+        if(sumLeft !== sumRight){
+            finalIndex = -1;
+        }
+        // ends when one equal index is discovered
+        if(sumLeft === sumRight){
+            finalIndex = tempIndex;
+            break;
+        }
+    }
+    return finalIndex;
+ }
+
+ //console.log(findMiddleIndex([4,0]))
+
+
 
 
 
