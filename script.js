@@ -4513,7 +4513,31 @@ const numOfStrings = (patterns, word)=>{
     }
  }
 
- //console.log(mostFrequent([2,1000,2,1000,2,3], 2))
+ //console.log(mostFrequent([2,1000,2,1000,2,3], 2));
+
+ 
+ // count quadruplets
+ const countQuadruplets = (nums)=>{
+    let counter = 0;
+    for(let i = 0; i < nums.length; i++){
+        for(let j = i + 1; j < nums.length; j++){
+            for(let k = j + 1 ; k < nums.length; k++){
+                for(let h = k + 1; h< nums.length; h++){
+                    if(nums[i] + nums[j] + nums[k] === nums[h]){
+                        counter++;
+                    }
+                }
+            }
+        }
+    }
+    return counter;
+ }
+
+ //console.log(countQuadruplets([9,6,8,23,39,23]));
+
+ 
+
+
 
 
 
