@@ -4597,7 +4597,44 @@ const numOfStrings = (patterns, word)=>{
  // 0 !== 0 = true
  // 0 !== 1 false
 
- //console.log(findRotation([[0,0,0],[0,1,0],[1,1,1]], [[1,1,1],[0,1,0],[0,0,0]]))
+ //console.log(findRotation([[0,0,0],[0,1,0],[1,1,1]], [[1,1,1],[0,1,0],[0,0,0]]));
+
+
+ const convertTime = (current, correct)=>{
+    let minOperationCounter = 0;
+    const currentString = current.split(':');
+    let currentTime = currentString.map((time)=> parseInt(time));
+    const correctString = correct.split(':');
+
+    let correctTime = correctString.map((time)=> parseInt(time));
+    let currentMinutes = (currentTime[0] * 60) + currentTime[1]; 
+    let correctMinutes = (correctTime[0] * 60) + correctTime[1];
+
+    while(currentMinutes !== correctMinutes){
+        let difference = correctMinutes - currentMinutes;
+        if(difference >= 60){
+            currentMinutes += 60;
+            minOperationCounter++;
+
+        }else if(difference < 60 && difference >= 15){
+            currentMinutes += 15;
+            minOperationCounter++;
+
+        }else if(difference < 15 && difference >= 5){
+            currentMinutes += 5;
+            minOperationCounter++;
+
+        }else if(difference < 5 && difference >= 1){
+            currentMinutes += 1;
+            minOperationCounter++;
+        }
+    }
+    return minOperationCounter;
+ }
+
+ //console.log(convertTime("02:30", "04:35"))
+
+
 
 
 
