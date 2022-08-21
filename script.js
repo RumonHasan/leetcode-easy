@@ -4574,6 +4574,36 @@ const numOfStrings = (patterns, word)=>{
  //console.log(findMiddleIndex([4,0]))
 
 
+ // work on breaking it down later
+ const findRotation = (mat,target)=>{
+    console.log(mat, target);
+    const matCheck = new Array(4).fill(true);
+    for(let i = 0; i < mat.length; i++){
+        for(let j = 0; j < mat[i].length; j++){
+            if(mat[i][j]!==target[i][j]) matCheck[0]=false;
+			if(mat[i][j]!==target[mat[i].length-j-1][i]) matCheck[1]=false;
+			if(mat[i][j]!==target[mat[i].length-i-1][mat[i].length-j-1]) matCheck[2]=false;
+			if(mat[i][j]!==target[j][mat[i].length-i-1]) matCheck[3]=false;
+        }
+    }
+    if(matCheck.some((el)=> el === true)){
+        return true;
+    }else{
+        return false;
+    }
+ }
+ // 0 != 1 = false,
+ // 0 !== 0 = true,
+ // 0 !== 0 = true
+ // 0 !== 1 false
+
+ //console.log(findRotation([[0,0,0],[0,1,0],[1,1,1]], [[1,1,1],[0,1,0],[0,0,0]]))
+
+
+
+
+
+
 
 
 
