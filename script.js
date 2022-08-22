@@ -4632,7 +4632,32 @@ const numOfStrings = (patterns, word)=>{
     return minOperationCounter;
  }
 
- //console.log(convertTime("02:30", "04:35"))
+ //console.log(convertTime("02:30", "04:35"));
+
+ // creating ransom note
+
+ const canConstruct = (ransomNote, magazine)=>{
+    let hash = {};
+    for(let index in magazine){
+        hash[magazine[index]] ? hash[magazine[index]]++ : hash[magazine[index]] = 1;
+    }
+    for(let i = 0; i < ransomNote.length; i++){
+        if(hash[ransomNote[i]]){
+            hash[ransomNote[i]]--;
+        }else{
+            return false;
+        }
+    }
+    return true;
+ }
+
+//console.log(canConstruct("aa", "aab"));
+
+
+
+
+
+
 
 
 
