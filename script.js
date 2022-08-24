@@ -4654,6 +4654,44 @@ const numOfStrings = (patterns, word)=>{
 //console.log(canConstruct("aa", "aab"));
 
 
+// minimum recoloring of black blocks
+
+const minimumRecolors = (blocks, k)=>{
+    let array = blocks.split('');
+    let minCounter = Infinity;
+    if(array.length === 1 && array[0] === 'B'){
+        return 0;
+    }
+    if(array.every((element)=> element === 'W')){
+        return k;
+    }
+    // checking substring
+    const checkSub = (arraySub)=>{
+        let counter = 0;
+        for(let i = 0; i < arraySub.length; i++){
+            if(arraySub[i] === 'W'){
+                counter++;
+            }
+        }
+        minCounter = Math.min(counter, minCounter);
+    }
+    // getting substrings
+    for(let i = 0; i < array.length; i++){
+        for(let j = i + 1; j < array.length; j++){
+            let substring = array.slice(i, j + 1);
+            if(substring.length === k){
+                checkSub(substring);
+            }
+            
+        }
+    }
+    return minCounter === Infinity ? 0 : minCounter;
+}   
+
+//console.log(minimumRecolors("WW", 1))
+
+
+
 
 
 
