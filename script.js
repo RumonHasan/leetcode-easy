@@ -4682,13 +4682,32 @@ const minimumRecolors = (blocks, k)=>{
             if(substring.length === k){
                 checkSub(substring);
             }
-            
         }
     }
     return minCounter === Infinity ? 0 : minCounter;
 }   
 
 //console.log(minimumRecolors("WW", 1))
+
+
+const minimumCost = (cost)=>{
+    let sortedCandies = cost.sort((a, b)=> b - a);
+    let freeCounter = 0;
+    let minimumCost = 0;
+
+    for(let i = 0; i < sortedCandies.length; i+=1){
+        if(freeCounter === 2){
+            freeCounter = 0;
+            continue;
+        }
+        minimumCost += sortedCandies[i];
+        freeCounter++;
+    }
+    return minimumCost;
+}
+
+//console.log(minimumCost([6,5,7,9,2,2]))
+
 
 
 
