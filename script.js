@@ -4709,7 +4709,28 @@ const minimumCost = (cost)=>{
 //console.log(minimumCost([6,5,7,9,2,2]))
 
 
+const luckyNumbers = (matrix)=>{
+    console.log(matrix);
+    let valueCollection = [];
+    // checking the entire matrix
+    for(let i = 0; i < matrix.length; i++){
+        let row = matrix[i];
+        for(let j = 0; j < matrix[i].length; j++){
+            const value = matrix[i][j];
+            const col = matrix.map((row)=> row[j]);
+            const minRowVal = Math.min(...row);
+            const maxColVal = Math.max(...col);
+            // check
+            if(value === minRowVal && value === maxColVal){
+                valueCollection.push(value);
+            }
+            
+        }
+    }
+    return valueCollection;
+}
 
+//console.log(luckyNumbers([[3,7,8],[9,11,13],[15,16,17]]))
 
 
 
