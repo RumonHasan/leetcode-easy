@@ -4706,8 +4706,7 @@ const minimumCost = (cost)=>{
     return minimumCost;
 }
 
-//console.log(minimumCost([6,5,7,9,2,2]))
-
+//console.log(minimumCost([6,5,7,9,2,2]);
 
 const luckyNumbers = (matrix)=>{
     console.log(matrix);
@@ -4730,8 +4729,40 @@ const luckyNumbers = (matrix)=>{
     return valueCollection;
 }
 
-//console.log(luckyNumbers([[3,7,8],[9,11,13],[15,16,17]]))
+//console.log(luckyNumbers([[3,7,8],[9,11,13],[15,16,17]]));
 
+
+// find max average value
+
+const findMaxAverage = (nums, k)=>{
+    console.log(nums, k);
+
+    let maxSum = -Infinity;
+    let index = 0;
+    let sum = 0;
+    let secondIndex = 0;
+    let startingPos = 0;
+
+    while(index < nums.length){
+        sum += nums[index];
+        secondIndex++;
+
+        if(secondIndex === k){
+            maxSum = Math.max(maxSum, sum);
+            secondIndex = 0;
+            startingPos += 1;
+            index = startingPos;
+            sum = 0;
+        }else{
+            index++;
+        }
+    }
+
+    return maxSum / k;
+
+}
+
+//console.log(findMaxAverage([1,12,-5,-6,50,3], 4));
 
 
 
