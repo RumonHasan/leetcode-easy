@@ -4764,6 +4764,54 @@ const findMaxAverage = (nums, k)=>{
 
 //console.log(findMaxAverage([1,12,-5,-6,50,3], 4));
 
+// valid mountain array using two pass algorthm method
+
+
+const validMountainArrayModified = (arr)=>{
+    let index = 0;
+    let count = 1;
+    let peak = false;
+    let valley = false;
+
+    let finalCheck = true;
+
+    if(arr.length === 1){
+        return false;
+    }
+    while(index < arr.length){
+        // edge case 1 if decreasing found at first
+        if(arr[index] > arr[index + 1]){
+            finalCheck = false;
+            break;
+        }
+        if(arr[index] < arr[index + 1]){
+            // increasing peak
+            while(index < arr.length && arr[index] < arr[index + 1]){
+                index++;
+                count++;
+                peak = true;
+            }
+            // decreasing 
+            while(index < arr.length && arr[index] > arr[index + 1]){
+                index++;
+                count++;
+                valley = true;
+            }
+            if(peak && valley && count === arr.length){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            index++;
+        }
+    }
+}
+
+console.log(validMountainArrayModified(
+    
+[3,5,5]))
+
 
 
 
