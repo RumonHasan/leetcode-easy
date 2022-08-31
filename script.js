@@ -4808,9 +4808,35 @@ const validMountainArrayModified = (arr)=>{
     }
 }
 
-console.log(validMountainArrayModified(
+// console.log(validMountainArrayModified(
     
-[3,5,5]))
+// [3,5,5]));
+
+
+// min operations
+
+const minimumOperations = (nums)=>{
+    // unique non zero numbers
+    let hash = {};
+    for(let i = 0; i < nums.length; i++){
+        if(hash[nums[i]]){
+            hash[nums[i]]++;
+        }else{
+            hash[nums[i]] = 1;
+        }
+    }
+    let array = [];
+    let minOperations = 0;
+    for(const [key, value] of Object.entries(hash)){
+        if(parseInt(key) !== 0){
+           minOperations++;    
+        }
+    }
+    return minOperations;
+
+}
+
+//console.log(minimumOperations([1,5,0,3,5]))
 
 
 
