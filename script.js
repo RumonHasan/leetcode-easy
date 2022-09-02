@@ -4825,7 +4825,6 @@ const minimumOperations = (nums)=>{
             hash[nums[i]] = 1;
         }
     }
-    let array = [];
     let minOperations = 0;
     for(const [key, value] of Object.entries(hash)){
         if(parseInt(key) !== 0){
@@ -4836,7 +4835,32 @@ const minimumOperations = (nums)=>{
 
 }
 
-//console.log(minimumOperations([1,5,0,3,5]))
+//console.log(minimumOperations([1,5,0,3,5]));
+
+
+// replacing any character around to find out where they are evenly distributed or not among the arrays
+const makeEqual = (words)=>{
+    let wordLen = words.length;
+    let hash = {};
+    for(let i = 0; i < words.length; i++){
+        for(let j = 0; j < words[i].length; j++){
+            if(hash[words[i][j]]){
+                hash[words[i][j]]++;
+            }else{
+                hash[words[i][j]] = 1;
+            }
+        }
+    }
+    let occurenceValues = Object.values(hash);
+    if(occurenceValues.every((element)=> element % wordLen === 0)){
+        return true;
+    }else{
+        return false;
+    }
+
+}
+
+//console.log(makeEqual(["caaaaa","aaaaaaaaa","a","bbb","bbbbbbbbb","bbb","cc","cccccccccccc","ccccccc","ccccccc","cc","cccc","c","cccccccc","c"]))
 
 
 
