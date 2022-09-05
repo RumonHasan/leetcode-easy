@@ -4863,6 +4863,43 @@ const makeEqual = (words)=>{
 //console.log(makeEqual(["caaaaa","aaaaaaaaa","a","bbb","bbbbbbbbb","bbb","cc","cccccccccccc","ccccccc","ccccccc","cc","cccc","c","cccccccc","c"]))
 
 
+const calculateTax = (brackets, income) =>{
+
+}   
+
+//console.log(calculateTax([[1,0],[4,25],[5,50]]));
+
+
+
+const minimumAbsDifference = (arr)=>{
+    const matrix = [];
+    let sortedEl = arr.sort((a, b)=> b - a);
+    let minValue = Infinity;
+
+    // checking the absolute differnece for sorted array 
+    for(let i = 1; i < sortedEl.length; i++){
+        const difference = Math.abs(sortedEl[i] - sortedEl[i - 1]);
+        minValue = Math.min(minValue, difference);
+    }
+    for(let i = 1; i < sortedEl.length; i++){
+        let tempArray = [];
+        const difference = Math.abs(sortedEl[i] - sortedEl[i - 1]);
+        if(difference === minValue){
+            tempArray = [sortedEl[i], sortedEl[i - 1]];
+        }
+        if(tempArray.length !== (undefined||0)){
+            matrix.push(tempArray);
+        }
+    }
+    return matrix.reverse();
+
+}
+
+//console.log(minimumAbsDifference([8,-68,-32,-81,83,93,-96,62,-103,-94,-66,74]))
+
+
+
+
 
 
 
