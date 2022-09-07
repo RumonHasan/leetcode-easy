@@ -4875,7 +4875,6 @@ const minimumAbsDifference = (arr)=>{
     const matrix = [];
     let sortedEl = arr.sort((a, b)=> b - a);
     let minValue = Infinity;
-
     // checking the absolute differnece for sorted array 
     for(let i = 1; i < sortedEl.length; i++){
         const difference = Math.abs(sortedEl[i] - sortedEl[i - 1]);
@@ -4892,10 +4891,33 @@ const minimumAbsDifference = (arr)=>{
         }
     }
     return matrix.reverse();
+}
+
+//console.log(minimumAbsDifference([8,-68,-32,-81,83,93,-96,62,-103,-94,-66,74]));
+
+
+const subOddLengthSubarrays = (arr)=>{
+    console.log(arr);
+    let total = 0;
+    for(let i = 0; i < arr.length; i++){
+        for(let j = i; j < arr.length; j++){
+            let subArray = arr.slice(i, j + 1);
+            if(subArray.length % 2 === 1){
+                const sum = subArray.reduce((a, b)=> a+ b);
+                total += sum;
+            }
+        }
+    }
+    return total;
 
 }
 
-//console.log(minimumAbsDifference([8,-68,-32,-81,83,93,-96,62,-103,-94,-66,74]))
+//console.log(subOddLengthSubarrays([1,4,2,5,3]))
+
+
+
+
+
 
 
 
