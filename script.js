@@ -4912,7 +4912,51 @@ const subOddLengthSubarrays = (arr)=>{
 
 }
 
-//console.log(subOddLengthSubarrays([1,4,2,5,3]))
+//console.log(subOddLengthSubarrays([1,4,2,5,3]));
+
+
+const shortestCompletingWord = (licensePlate, words)=>{
+    console.log(licensePlate, words);
+    let answerCollection = [];
+    
+    let getLetters = licensePlate.split('').filter((letter)=> isNaN(letter));
+    let letters = getLetters.map((letter)=> letter.toLowerCase());
+
+    const checkLetters = (letters, word)=>{
+        let letterHash = {};
+        for(let index in letters){
+            letterHash[letters[index]] ? letterHash[letters[index]]++ : letterHash[letters[index]] = 1; 
+        }
+        for(let i = 0; i < word.length; i++){
+            if(letterHash[word[i]]){
+                letterHash[word[i]]--;
+            }
+        }
+        let getKeys = Object.values(letterHash);
+        if(getKeys.every((value)=> value === 0)){
+            answerCollection.push(word);
+        }
+    }
+
+    for(let i = 0; i < words.length; i++){
+       checkLetters(letters, words[i]);
+    }
+
+    console.log(answerCollection);
+
+    let shortestLen = Infinity;
+    for(let i = 0; i < answerCollection.length; i++){
+        shortestLen = Math.min(answerCollection[i].length, shortestLen);
+    }
+    let shortestWords = answerCollection.filter((word)=> word.length === shortestLen);
+    
+    return shortestWords[0];
+
+}
+
+//console.log(shortestCompletingWord("1s3 456", ["looks","pest","stew","show"]))
+
+
 
 
 
