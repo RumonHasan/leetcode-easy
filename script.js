@@ -4954,8 +4954,30 @@ const shortestCompletingWord = (licensePlate, words)=>{
 
 }
 
-//console.log(shortestCompletingWord("1s3 456", ["looks","pest","stew","show"]))
+//console.log(shortestCompletingWord("1s3 456", ["looks","pest","stew","show"]));
 
+
+const containsDuplicateII = (nums, k)=>{
+    console.log(nums, k);
+    let map = new Map();
+    for(let i = 0; i < nums.length; i++){
+        if(!map.has(nums[i])){
+            map.set(nums[i], i);
+        }else{
+            if(map.has(nums[i])){
+                const storedIndex = map.get(nums[i])
+                const difference = Math.abs(i - storedIndex);
+                if(difference <= k) return true;
+                map.set(nums[i], i);
+                console.log(map);
+            }
+        }
+        
+    }
+    return false;
+}
+
+//console.log(containsDuplicateII([1,2,3,1,0], 3))
 
 
 
