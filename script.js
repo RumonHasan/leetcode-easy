@@ -4972,12 +4972,47 @@ const containsDuplicateII = (nums, k)=>{
                 console.log(map);
             }
         }
-        
     }
     return false;
 }
 
-//console.log(containsDuplicateII([1,2,3,1,0], 3))
+//console.log(containsDuplicateII([1,2,3,1,0], 3));
+
+
+const lexicalOrder = (n)=>{
+    let array = new Array(n);
+    const stack = [];
+    for(let i = 1; i <= n ; i++){
+        array[i] = i.toString();
+        
+    }
+    // using the single element as a string changes and sorts individual value of the strings
+    array.sort().map((element)=> stack.push(Number(element)));
+    return stack;
+
+}
+
+//console.log(lexicalOrder(13));
+
+
+const firstPalindrome = (words)=>{
+    const checkForPalindrome = (word)=>{
+        let reverseWord = word;
+        let reverseVersion = reverseWord.split('').reverse().join('');
+        if(reverseVersion === word){
+            return true;
+        }
+    }
+
+    for(let i = 0; i < words.length; i++){
+        if(checkForPalindrome(words[i])){
+            return words[i];
+        }
+    }
+    return ''
+}
+//console.log(firstPalindrome(["abc","car","ada","racecar","cool"]));
+
 
 
 
