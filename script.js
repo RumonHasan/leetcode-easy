@@ -5003,7 +5003,6 @@ const firstPalindrome = (words)=>{
             return true;
         }
     }
-
     for(let i = 0; i < words.length; i++){
         if(checkForPalindrome(words[i])){
             return words[i];
@@ -5012,6 +5011,44 @@ const firstPalindrome = (words)=>{
     return ''
 }
 //console.log(firstPalindrome(["abc","car","ada","racecar","cool"]));
+
+
+// next greater element
+
+const nextGreaterElement = (nums1, nums2)=>{
+    const stack = [];
+    let secondIndex = 0;
+    let index = 0;
+    while(index < nums2.length){
+        if(nums2[index] === nums1[secondIndex]){
+            const array = nums2.slice(index, nums2.length);
+            let max = array[0];
+            for(let i = 1; i < array.length; i++){
+                if(max < array[i]){
+                    max = array[i];
+                    break;
+                }
+            }
+            if(max === array[0]){
+                stack.push(-1);
+            }else{
+                stack.push(max);
+            }
+            index = 0;
+            secondIndex++;
+            continue;
+        }
+        index++;
+    }
+    return stack;
+
+}
+
+//console.log(nextGreaterElement([1,3,5,2,4],
+  //  [6,5,4,3,2,1,7]));
+
+
+
 
 
 
