@@ -5048,6 +5048,34 @@ const nextGreaterElement = (nums1, nums2)=>{
   //  [6,5,4,3,2,1,7]));
 
 
+// valid closing parentheses
+const validParentheses = (s)=>{
+    const stack = [];
+    if(s.length === 1){
+        return false;
+    }
+    const hash = {
+        ")": "(",
+        "]":"[",
+        "}":"{"
+    }
+    for(let i = 0; i < s.length; i++){
+       if(hash[s[i]] === undefined){
+            stack.push(s[i])
+       }else{
+            if(stack[stack.length - 1] === hash[s[i]]){
+            stack.pop();
+        }else{
+            return false;
+        }
+       }
+    }
+    return stack.length === 0 && true;
+}
+
+//console.log(validParentheses(")(){}"))
+
+
 
 
 
