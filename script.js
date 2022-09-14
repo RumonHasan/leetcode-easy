@@ -5076,6 +5076,19 @@ const validParentheses = (s)=>{
 //console.log(validParentheses(")(){}"))
 
 
+const merge = (nums1, m, nums2, n)=>{
+    const firstPart = nums1.slice(0, m);
+    const lastPart = nums2.slice(0, n);
+    const stack = [...firstPart, ...lastPart].sort((a, b)=> a - b);
+    for(let index in nums1){
+        nums1[index] = stack[index];
+    }
+    return nums1;
+}
+
+//console.log(merge([1,2,3,0,0,0], 3, [2,5,6], 3))
+
+
 
 
 
