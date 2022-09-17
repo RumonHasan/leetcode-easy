@@ -5086,7 +5086,33 @@ const merge = (nums1, m, nums2, n)=>{
     return nums1;
 }
 
-//console.log(merge([1,2,3,0,0,0], 3, [2,5,6], 3))
+//console.log(merge([1,2,3,0,0,0], 3, [2,5,6], 3));
+
+
+const mostFrequentEven = (nums)=>{
+    let hash = {};
+    let answerCollection = [];
+    let maxCheck = -1;
+    for(let index in nums){
+        if(nums[index] % 2 === 0){
+            hash[nums[index]] ? hash[nums[index]]++ : hash[nums[index]] = 1;
+        }
+    }
+    let maxVal = -Infinity;
+    for(const [key, value] of Object.entries(hash)){
+        if(parseInt(key) % 2 === 0){
+            maxVal = Math.max(maxVal, value);
+        }
+    }
+    for(const [key, value] of Object.entries(hash)){
+        if(value === maxVal){
+            answerCollection.push(parseInt(key));
+        }
+    }
+    return Math.min(...answerCollection) === Infinity ? -1 : Math.min(...answerCollection);
+
+}
+//console.log(mostFrequentEven([0,1,2,2,4,4,1]))
 
 
 
