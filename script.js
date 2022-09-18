@@ -5112,7 +5112,27 @@ const mostFrequentEven = (nums)=>{
     return Math.min(...answerCollection) === Infinity ? -1 : Math.min(...answerCollection);
 
 }
-//console.log(mostFrequentEven([0,1,2,2,4,4,1]))
+//console.log(mostFrequentEven([0,1,2,2,4,4,1]));
+
+
+const findMaxOnes = (nums)=>{
+    let maxOnes = 0;
+    let oneCount = 0;
+
+    for(let end = 0; end < nums.length; end++){
+        if(nums[end] === 1){
+            oneCount++;
+        }
+        while(nums[end] === 0 || end === nums.length - 1){
+          maxOnes = Math.max(oneCount, maxOnes);
+          oneCount = 0;
+          break;
+        }
+    }
+    return maxOnes;
+}
+
+//console.log(findMaxOnes([1,0,1,1,1,1,0,1,1,1,1,1]));
 
 
 
