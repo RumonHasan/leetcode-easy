@@ -5135,6 +5135,31 @@ const findMaxOnes = (nums)=>{
 //console.log(findMaxOnes([1,0,1,1,1,1,0,1,1,1,1,1]));
 
 
+const mostFrequentEvenAlternate = (nums)=>{
+    const array = nums.filter((num)=> num % 2 === 0).sort((a,b)=>a - b);
+    let tempCount = 0;
+    let tempVal = array[0];
+    let prevTempCount = 0;
+    let returnNumber = -1;
+    for(let i = 0; i < array.length; i++){
+        if(array[i] === tempVal){
+            tempCount++;
+        }
+        if(array[i] !== tempVal){
+            tempCount = 1;
+            tempVal = array[i];
+        }
+        if(tempCount > prevTempCount){
+            prevTempCount = tempCount;
+            returnNumber = array[i];
+        }
+    }
+    return returnNumber;
+    
+}
+//console.log(mostFrequentEvenAlternate([0,0,1,2,2,2,2,4,4,4,1]))
+
+
 
 
 
