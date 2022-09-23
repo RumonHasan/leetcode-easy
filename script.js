@@ -5157,7 +5157,73 @@ const mostFrequentEvenAlternate = (nums)=>{
     return returnNumber;
     
 }
-//console.log(mostFrequentEvenAlternate([0,0,1,2,2,2,2,4,4,4,1]))
+//console.log(mostFrequentEvenAlternate([0,0,1,2,2,2,2,4,4,4,1]));
+
+
+const findLHS = (nums)=>{
+    // map approach with nested loop
+    let numMap = new Map();
+    for(let index in nums){
+        if(numMap.has(nums[index])){
+            // increement map if it has
+            numMap.set(nums[index], numMap.get(nums[index]) + 1);
+        }else{
+            numMap.set(nums[index], 1);
+        }
+    }
+    // core logic is to find whether the map or js object contains a key that is 1 higher then the key
+    let result = 0;
+    numMap.forEach((value, key)=>{
+        const min =  numMap.get(key - 1);
+        if(min){
+            result = Math.max(result, min + value);
+        }
+    });
+
+    // sortedApproach
+    let sortedArray = nums.sort((a, b)=> a - b);
+    let right = 1;
+    let left = 0;
+    const mainDiff = 1;
+    // two pointer approach;
+    let finalResult = 0;
+    while(right < sortedArray.length){
+        let difference = sortedArray[right] - sortedArray[left];
+        if(difference === mainDiff){
+            finalResult = Math.max(finalResult, (right - left) + 1);
+        }
+        if(difference > mainDiff){
+            left++;
+        }else{
+            right++;
+        }
+    }
+   return finalResult;
+}
+
+//console.log(findLHS([1,3,2,2,5,2,3,7]))
+
+// 1 2 2 2 3 3 5 7
+
+// longest altitude
+
+const longestAltitude = (gain)=>{
+    const stack = [];
+    let difference = gain[0];
+    stack.push(difference);
+    for(let i = 1; i < gain.length; i++){
+        difference += gain[i];
+        stack.push(difference)
+    }
+    stack.unshift(0);
+    return Math.max(...stack);
+}
+
+console.log(longestAltitude([-5,1,5,0,-7]))
+
+
+
+
 
 
 
