@@ -5219,7 +5219,52 @@ const longestAltitude = (gain)=>{
     return Math.max(...stack);
 }
 
-console.log(longestAltitude([-5,1,5,0,-7]))
+//console.log(longestAltitude([-5,1,5,0,-7]))
+
+
+const lengthOfLastWord = (s)=>{
+    const array = s.split('');
+    const space = ' ';
+    if(array[array.length - 1] !== space){
+        array.push(' ');
+    };
+    const stack = [];
+    let result = '';
+    for(let index in array){
+        if(array[index] === space){
+            stack.push(result);
+            result = '';
+            stack.push('');
+        }else {
+            if(array[index] !== space){
+                result += array[index];
+            }
+        }
+    }
+    let newStack = [];
+    for(let i = 0; i < stack.length; i++){
+        if(stack[i] !== ''){
+            newStack.push(stack[i]);
+        }
+    }
+    return newStack[newStack.length - 1].length;
+}
+
+//console.log(lengthOfLastWord(
+ //   "luffy is still joyboy"))
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
