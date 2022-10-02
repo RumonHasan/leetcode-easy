@@ -5221,7 +5221,6 @@ const longestAltitude = (gain)=>{
 
 //console.log(longestAltitude([-5,1,5,0,-7]))
 
-
 const lengthOfLastWord = (s)=>{
     const array = s.split('');
     const space = ' ';
@@ -5249,9 +5248,73 @@ const lengthOfLastWord = (s)=>{
     }
     return newStack[newStack.length - 1].length;
 }
-
 //console.log(lengthOfLastWord(
- //   "luffy is still joyboy"))
+ //   "luffy is still joyboy"));
+
+
+const bestTimeToBuyStock = (prices)=>{
+    let start = 0;
+    let end = 1;
+    let maxProfit = 0;
+
+    // sliding window technique
+    while(end < prices.length){
+        // loss is incurred
+        while(prices[end] - prices[start] < 0){
+            start++;
+        }
+        maxProfit = Math.max(prices[end] - prices[start], maxProfit);
+        end++;
+    }
+    return maxProfit;
+}
+
+//console.log(bestTimeToBuyStock([7,1,5,3,6,4]));
+
+// doing minimum recolors using sliding window technique
+
+
+const minimumRecolorsSlidingWindow = (blocks, k)=>{
+    console.log(blocks.split(''));    
+    // using the sliding window approach in order to convert the letters
+    let index = 0;
+    let minimumCount = Infinity;
+    let start = 0;
+    let blockHash = {};
+    let tempIndex = 0;
+    // setting definite range
+    while(tempIndex < k){
+        blockHash[blocks[tempIndex]] ? blockHash[blocks[tempIndex]]++ : 
+        blockHash[blocks[tempIndex]] = 1;
+        minimumCount = blockHash['W'];
+        tempIndex++;
+    }
+    // setting the next range of letter
+    index = k;
+    while(index < blocks.length){
+        if(blockHash[blocks[index]]){
+            blockHash[blocks[index]]++
+        }else{
+            blockHash[blocks[index]] = 1;
+        }
+        // implementing the sliding mechanism
+        if(blockHash[blocks[start]]){
+            blockHash[blocks[start]]--;
+        }else{
+            // works without deleting also
+            delete blockHash[blocks[start]];
+        }
+        start++;
+        minimumCount = Math.min(minimumCount, blockHash['W']);
+        index++;
+    }
+    return minimumCount ? minimumCount : 0;
+}
+
+//console.log(minimumRecolorsSlidingWindow("WBBWWBBWBW", 7))
+
+
+ 
 
 
 
