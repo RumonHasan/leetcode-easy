@@ -5275,7 +5275,7 @@ const bestTimeToBuyStock = (prices)=>{
 
 
 const minimumRecolorsSlidingWindow = (blocks, k)=>{
-    console.log(blocks.split(''));    
+   // console.log(blocks.split(''));    
     // using the sliding window approach in order to convert the letters
     let index = 0;
     let minimumCount = Infinity;
@@ -5311,7 +5311,58 @@ const minimumRecolorsSlidingWindow = (blocks, k)=>{
     return minimumCount ? minimumCount : 0;
 }
 
-//console.log(minimumRecolorsSlidingWindow("WBBWWBBWBW", 7))
+//console.log(minimumRecolorsSlidingWindow("WBBWWBBWBW", 7));
+
+
+const countGoodSubstringsSlidingWindow = (s)=>{
+    console.log(s.split(''));
+
+    let goodLength = 3;
+    let start = 0;
+    let index = 0;
+    let counter = 0;
+    let tempIndex = 0;
+    let hash = {};
+    while(tempIndex < goodLength){
+        hash[s[tempIndex]] ? hash[s[tempIndex]]++ : hash[s[tempIndex]] = 1;
+        tempIndex++;
+    }
+    const values = Object.values(hash);
+    if(values.every((el)=> el === 1)){
+        counter = 1;
+    }
+    index = goodLength;
+    // checking range
+    const checkHash = (map)=>{
+        const values = Object.values(map);
+        if(values.some((el)=> el > 1)){
+            return false;
+        }
+        return true;
+    }
+    while(index < s.length){
+        if(hash[s[index]]){
+            hash[s[index]]++;
+        }else{
+            hash[s[index]] = 1;
+        }
+
+        if(hash[s[start]] > 1){
+            hash[s[start]]--;
+        }else{
+            delete hash[s[start]];
+        }
+        start++;
+        if(checkHash(hash)){
+            counter++;
+        }
+        index++;
+    }
+    return counter;
+
+}
+
+console.log(countGoodSubstringsSlidingWindow("owuxoelszb"))
 
 
  
