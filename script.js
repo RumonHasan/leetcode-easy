@@ -5362,9 +5362,34 @@ const countGoodSubstringsSlidingWindow = (s)=>{
 
 }
 
-console.log(countGoodSubstringsSlidingWindow("owuxoelszb"))
+//console.log(countGoodSubstringsSlidingWindow("owuxoelszb"));
 
 
+
+const maxAverageAlternate = (nums, k)=>{
+    let start = 0;
+    let tempStart = 0;
+    let end = 0;
+    let sum = 0;
+    let maxAverage = -Infinity;
+    while(tempStart < k){
+        sum += nums[tempStart];
+        tempStart++;
+    }
+    maxAverage = sum / k;
+    end = tempStart;
+    let maxSum = -Infinity;
+    while(end < nums.length){
+        sum -= nums[start];
+        start++;
+        sum += nums[end];
+        maxSum = Math.max(maxSum, sum);
+        end++;
+    }
+    maxAverage = Math.max(maxAverage, maxSum / k)
+    return maxAverage
+}
+//console.log(maxAverageAlternate([-1], 1))
  
 
 
