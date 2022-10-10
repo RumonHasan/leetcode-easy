@@ -5364,8 +5364,6 @@ const countGoodSubstringsSlidingWindow = (s)=>{
 
 //console.log(countGoodSubstringsSlidingWindow("owuxoelszb"));
 
-
-
 const maxAverageAlternate = (nums, k)=>{
     let start = 0;
     let tempStart = 0;
@@ -5389,7 +5387,117 @@ const maxAverageAlternate = (nums, k)=>{
     maxAverage = Math.max(maxAverage, maxSum / k)
     return maxAverage
 }
-//console.log(maxAverageAlternate([-1], 1))
+//console.log(maxAverageAlternate([-1], 1));
+
+
+// using sliding window mechanism
+const divisorStrings = (num, k)=>{
+    const numStringArray = num.toString().split('');
+    let startIndex = 0;
+    let endIndex = 0;
+    let beautyCounter = 0;
+    const slice = num % parseInt(numStringArray.slice(0, k).join(''));
+    if(slice === 0) beautyCounter++;
+    endIndex = k;   
+    // checking the rest of the range;
+    while(endIndex < numStringArray.length){
+        startIndex++;
+        const slice = parseInt(numStringArray.slice(startIndex, endIndex + 1).join(''));
+        if(num % slice === 0){
+            beautyCounter++;
+        }
+        endIndex++;
+    };
+    return beautyCounter;
+}
+
+//console.log(divisorStrings(430043, 2));
+
+
+const countPrefixes = (words, s)=>{
+    let prefixCounter = 0;
+    // using the startswith function approach
+    for(let index in words){
+        if(s.startsWith(words[index])) prefixCounter++;
+    }
+    return prefixCounter;
+
+}
+
+//console.log(countPrefixes(["a","b","c","ab","bc","abc"], 'abc'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
 
 
