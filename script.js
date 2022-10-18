@@ -5426,6 +5426,16 @@ const countPrefixes = (words, s)=>{
 
 //console.log(countPrefixes(["a","b","c","ab","bc","abc"], 'abc'));
 
+const sortArrayByParity = (nums)=>{
+    const stack = [];
+    for(let index in nums){
+        nums[index] % 2 === 0 ? stack.unshift(nums[index]) : stack.push(nums[index]);
+    }
+    return stack;
+}
+
+console.log(sortArrayByParity([3,1,2,4]))
+
 
 
 
