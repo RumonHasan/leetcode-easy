@@ -5434,7 +5434,41 @@ const sortArrayByParity = (nums)=>{
     return stack;
 }
 
-console.log(sortArrayByParity([3,1,2,4]))
+//console.log(sortArrayByParity([3,1,2,4]));
+
+
+// finding words on the keyboard row;
+const findWords = (words)=>{
+    const stack = [];
+    let keyHashes = { 'q':1,'w':1,'e':1,'r':1,'t':1,'y':1,'u':1,'i':1,'o':1,'p':1,
+                'a':2,'s':2,'d':2,'f':2,'g':2,'h':2,'j':2,'k':2,'l':2,
+                'z':3,'x':3,'c':3,'v':3,'b':3,'n':3,'m':3 };
+    // traversal through each word
+    for(let i = 0; i < words.length; i++){
+        let recordHashVal = 0;
+        let check = false;
+        let singleWord = words[i].toLowerCase();
+        for(let j = 0 ; j < singleWord.length; j++){
+            if(j === 0 && singleWord[j] in keyHashes){
+                recordHashVal = keyHashes[singleWord[j]];
+            }
+            // checking for val;
+            if(recordHashVal !== keyHashes[singleWord[j]]){
+                check = false;
+                break;
+            }else{
+                check = true;
+            }
+        }   
+        if(check){
+            stack.push(words[i]);
+        }
+    }
+    return stack;
+
+}
+
+//console.log(findWords(["Hello","Alaska","Dad","Peace"]))
 
 
 
