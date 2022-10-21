@@ -5468,7 +5468,20 @@ const findWords = (words)=>{
 
 }
 
-//console.log(findWords(["Hello","Alaska","Dad","Peace"]))
+//console.log(findWords(["Hello","Alaska","Dad","Peace"]));
+
+
+const prefixCounter = (words, pref)=>{
+    let count = 0;
+    for(let index in words){
+        if(words[index].startsWith(pref)){
+            count++;
+        }
+    };
+    return count;
+}
+
+//console.log(prefixCounter(["pay","attention","practice","attend"], 'at'));
 
 
 
