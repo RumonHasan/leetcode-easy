@@ -5483,6 +5483,21 @@ const prefixCounter = (words, pref)=>{
 
 //console.log(prefixCounter(["pay","attention","practice","attend"], 'at'));
 
+const countNegatives = (grid)=>{
+  const flatGrid = grid.flat();
+  let counter = 0;
+  console.log(flatGrid);
+flatGrid.filter((singleNum)=> singleNum < 0&& counter++);
+return counter;
+}
+
+//console.log(countNegatives(
+    [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]))
+
+
+
+
+
 
 
 
