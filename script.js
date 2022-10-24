@@ -5492,7 +5492,32 @@ return counter;
 }
 
 //console.log(countNegatives(
-    [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]))
+   // [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]));
+
+
+const moveZeroes = (nums)=>{
+    if(nums.every((num)=> num=== 0)){
+        return nums;
+    }
+    let countZero = 0;
+    let nonZeroEl = [];
+    for(let i = 0; i < nums.length; i++){
+        if(nums[i] !== 0){
+            nonZeroEl.push(nums[i]);
+        }else{
+            countZero++;
+        }
+    }
+    for(let i = 0; i < countZero; i++){
+        nonZeroEl.push(0);
+    };
+    for(let i = 0; i < nums.length; i++){
+        nums[i] = nonZeroEl[i];
+    };
+    return nums;
+}
+
+//console.log(moveZeroes([1,0,0,0,1]))
 
 
 
